@@ -1,25 +1,18 @@
-import { execSync } from 'child_process'
-import fs from 'fs'
-let handler = async (m, { conn, text, isROwner }) => {
-  if (global.conn.user.jid == conn.user.jid) {
-    let stdout = execSync('git config --global user.email "fuadbotzmd@gmail.com" && git config --global user.name "FuadBoTz-MD" && git add . && git commit -m "Percobaan-" && git push' + text + 'FuadBoTz-MD' + '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 ' + (text ? ' ' + text : ''))
-    if (isROwner) fs.readdirSync('plugins').map(v => global.reload('', v))
-    m.reply(stdout.toString())
-  }
+import cp from 'child_process'
+import { promisify, format } from 'util'
+let exec = promisify(cp.exec).bind(cp)
+let handler = async (m, { conn, isOwner }) => {
+    let caption = `"V7"`
+    if (!isOwner) return
+	await conn.reply(m.chat, "Mohon tunggu...\nSedang mengupload script ke github", m)
+    exec(`git config --global user.email "fuadbotzmd@gmail.com" && git config --global user.name "FuadBoTz-MD" && git add . && git commit -m ${caption} && git push`, (stdout, stderr) => {
+        if (stdout) return m.reply(stdout); //biasanya error disini, kalo error coba hapus aja 2 if ini
+        if (stderr) return m.reply(stderr);
+    })
 }
 handler.help = ['update']
-handler.tags = ['host']
-handler.command = /^update$/i
+handler.tags = ['advanced']
+handler.command = /^(update|u)$/i
 handler.rowner = true
-handler.mods = false
-handler.premium = false
-handler.group = false
-handler.private = false
-
-handler.admin = false
-handler.botAdmin = false
-
-handler.fail = null
-handler.exp = 0
 
 export default handler

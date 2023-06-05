@@ -7,30 +7,27 @@ await conn.sendMessage(m.chat, {
             text: '🦋',
             key: m.key,
           }})
-let pp = 'https://telegra.ph/file/879d6a009a8068d9ddee8.jpg'
-
+let pp = 'https://telegra.ph/file/b0b58f446bd5935ee6c00.jpg'
+let totalf = Object.values(global.plugins).filter(
+    (v) => v.help && v.tags
+  ).length;
 let who = m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted ? m.quoted.sender : m.fromMe ? conn.user.jid : m.sender
-    let name = conn.getName(who)
-    let fkon = { key: { fromMe: false, participant: `${m.sender.split`@`[0]}@s.whatsapp.net`, ...(m.chat ? { remoteJid: '16504228206@s.whatsapp.net' } : {}) }, message: { contactMessage: { displayName: `${name}`, vcard: `BEGIN:VCARD\nVERSION:3.0\nN:;a,;;;\nFN:${name}\nitem1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD`}}}
+let name = conn.getName(who)
 
 let ucpn = `${ucapan()}`
-let info = `Hallo ${name}👋🏻* \n*${ucpn}*\n\n*༺▢══〔 llı USER ıll 〕══༻*
-*𖥂* Name : *${await conn.getName(m.sender)}*
-*𖥂* Tags : @${who.replace(/@.+/, '')}
+let info = `Hallo ${name}👋🏻* \n*${ucpn}*\n\nSelamat datang di dashboard bot kami!*\n\n- Kami berharap Anda akan menikmati pengalaman berinteraksi dengan bot kami yang ramah dan intuitif.\n\n- Kami telah menyertakan berbagai fitur yang dapat membantu Anda mengelola dan meningkatkan kinerja bot Anda.\n\n- Kami berharap Anda akan menikmati menggunakan dashboard bot kami dan semoga Anda mendapatkan manfaat dari fitur-fitur yang kami tawarkan.
 
-*⌘══〔 llı CODE ıll 〕══⌘*
-*𖥂* 🅟 = *Premium*
-*𖥂* 🅛 = *Limit*
 
  💫 *ɴᴏᴛᴇ (ʜᴀʀᴀᴘ ᴅɪʙᴀᴄᴀ) :*
 ʙᴇʀʜᴜʙᴜɴɢ ʙᴜᴛᴛᴏɴ ᴛɪᴅᴀᴋ ʟᴀɢɪ
-ᴛᴇʀʟɪʜᴀᴛ ᴅɪ ᴡʜᴀᴛsᴀᴘᴘ ᴏʀ, ᴋᴀᴍɪ
+ᴛᴇʀʟɪʜᴀᴛ ᴅɪ ᴡʜᴀᴛsᴀᴘᴘ ᴏʀɪ, ᴋᴀᴍɪ
 ᴅᴇᴠᴇʟᴏᴘᴇʀ sᴇᴛᴜᴊᴜ ᴜᴛᴋ ᴍᴇᴍʙᴜᴀᴛ
 ʙᴏᴛ ɪɴɪ ᴛᴀɴᴘᴀ ʙᴜᴛᴛᴏɴ ᴊᴀᴅɪ ᴋᴀᴍɪ
 ʜᴀʀᴀᴘ ᴜsᴇʀ sᴋᴀʟɪᴀɴ ᴊɢɴ ᴍᴀɢᴇʀ ᴜᴛᴋ
 ᴍᴇɴɢᴇᴛɪᴋ ᴄᴏᴍᴍᴀɴᴅ & ᴍᴇᴍʙᴀᴄᴀ ᴋᴇᴛᴇʀᴀɴɢᴀɴ² ʙᴏᴛ ɪɴɪ,
-ᴜɴᴛᴜᴋ ᴡʜᴀᴛsᴀᴘᴘ ᴍᴏᴅ/ᴏʀɪ ᴠᴇʀsɪ ʟᴀᴍᴀ ʙɪsᴀ ʟᴀɴɢsᴜɴɢ ᴋᴇᴛɪᴋ .menu2.
-
+◉ SILAHKAN KETIK CMD
+ .? All
+Untuk Menampilkan Semua Fitur BOT
 
 🦋 *ᴘᴇʀᴀᴛᴜʀᴀɴ :*
 1. Jɢɴ Sᴘᴀᴍ!!
@@ -38,35 +35,30 @@ let info = `Hallo ${name}👋🏻* \n*${ucpn}*\n\n*༺▢══〔 llı USER ıl
 3. ɢᴜɴᴀᴋᴀɴ ʙᴏᴛ ᴅᴇɴɢᴀɴ *ʙɪᴊᴀᴋ*
 4. ᴊᴀɴɢᴀɴ ᴛᴇʟғᴏɴ/ᴄᴀʟʟ ʙᴏᴛ!
 
-  *LIST Command :*
-1. Menu Utama => *.menu2*
-2. Sewa BOT => *.sewa*
-3. Perkenalan BOT => *.salken*
-4. All Fitur => *.? All*
-5. List Fitur RPG => *.? rpg* 
-6. List Fitur Game => *.? game*
-7. List Fitur Group => *.? group*
-8. List Fitur Anime => *.? anime*
-9. List Fitur Premium => *.? premium*
-10. List Fitur Downloader => *.? downloader*
-11. List Fitur  Anonymous => *.? anonymous*
-🦋 Dan Masi Banyak Lagi Seperti stiker, internet, tools, maker, virus, exp, Dan Lain²
+*❖─···─〈* *I N F O  B O T*
+[!] ~ Memory Used : ${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)}MB
+[!] ~ Size Database: ${megabit()} MB
+[!] ~ Total Fitur: ${totalf}
+┗───···─────𖡹
 
- ┣═┅━━┅━┅━┅═–––๑
- ┃〔 llı 𝑻𝒉𝒂𝒏𝒌𝒔 𝑻𝒐 ıll 〕
- ┣═┅═━––––––––––๑
- ┃▷ *𝐀𝐥𝐥𝐚𝐡 𝐒𝐖𝐓*
- ┃▷ *𝐎𝐫𝐚𝐧𝐠 𝐓𝐮𝐚*
- ┃▷ *𝐅𝐮𝐚𝐝𝐗𝐲 (𝐌𝐞)*
- ┃▷ *𝐊𝐲𝐚𝐦𝐢*
- ┃▷ *𝐃𝐚𝐯𝐞 𝐊𝐠𝐰*
- ┃▷ *𝐍𝐚𝐫𝐮𝐭𝐨𝐦𝐨*
- ┃▷ *𝐁𝐨𝐜𝐡𝐢𝐥𝐆𝐚𝐦𝐢𝐧𝐠*
- ┃▷ *𝐀𝐠𝐮𝐬 𝐅𝐚𝐦𝐢𝐥𝐢𝐚*
- ┃▷ *𝐁𝐨𝐜𝐡𝐢𝐥𝐭𝐞𝐚𝐦*
- ╰═┅═━––––––––––๑
-❀𝑫𝒂𝒕𝒆 ${new Date().toLocaleDateString()}*`
-await conn.reply(m.chat, info, fkon, { mentions: [who], contextInfo: { forwardingScore: 9999, isForwarded: true, externalAdReply :{ mediaType: 1, mediaUrl: pp, title: '® FuadXy (Public)', thumbnail: { url: pp }, thumbnailUrl: pp, sourceUrl: 'https://chat.whatsapp.com/EAR7T7H59vOJz8KcwMP179', renderLargerThumbnail: true }}})
+
+]=❏ *Tʜᴀɴᴋs Tᴏ* ❏=[
+   • *𝐀𝐥𝐥𝐚𝐡 𝐒𝐖𝐓*
+   • *𝐎𝐫𝐚𝐧𝐠 𝐓𝐮𝐚*
+   • *𝐅𝐮𝐚𝐝𝐗𝐲 (𝐌𝐞)*
+   • *𝐊𝐲𝐚𝐦𝐢*
+   • *𝐃𝐚𝐯𝐞 𝐊𝐠𝐰*
+   • *𝐍𝐚𝐫𝐮𝐭𝐨𝐦𝐨*
+   • *𝐁𝐨𝐜𝐡𝐢𝐥𝐆𝐚𝐦𝐢𝐧𝐠*
+   • *𝐀𝐠𝐮𝐬 𝐅𝐚𝐦𝐢𝐥𝐢𝐚*
+   • *𝐁𝐨𝐜𝐡𝐢𝐥𝐭𝐞𝐚𝐦*
+ 
+ᴍᴏᴛɪᴠᴀsɪ 🦋:
+${motivasi.getRandom()}
+
+❀𝑫𝒂𝒕𝒆 ${new Date().toLocaleDateString()}`
+await conn.sendPresenceUpdate('recording', m.chat)
+await conn.reply(m.chat, info, m, { mentions: [who], contextInfo: { forwardingScore: 9999, isForwarded: true, externalAdReply :{ mediaType: 1, mediaUrl: pp, title: ' ', thumbnail: { url: pp }, thumbnailUrl: pp, sourceUrl: 'https://call.whatsapp.com/video/rX0OHKCdyxNvvypMT7FdqZ', renderLargerThumbnail: true }}})
   }
 handler.help = ['menu']
 handler.tags = ['info', 'main']
@@ -95,3 +87,8 @@ function ucapan() {
   }
   return res
 }
+function megabit() {
+    let stats = fs.statSync("database.json")
+    let ukuran_mb = stats.size / (1024*1024)
+    return ukuran_mb.toFixed(1)
+    }

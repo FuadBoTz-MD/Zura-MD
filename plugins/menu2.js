@@ -26,7 +26,6 @@ const defaultMenu = {
 
 %m1 *U S E R*
 %m2 Name : %name
-%m2 Tag : %tag
 %m2 Status : *%prems*
 %m2 Limit : *%limit*
 %m2 Money : *%money*
@@ -83,7 +82,7 @@ await conn.sendMessage(m.chat, {
   'audio': 'Audio',
   'maker': 'Maker',
   'database': 'Database',
-  'quran': 'Al Qur-an',
+  'quran': 'Al Qur\'an',
   'developer': 'Developer',
   'owner': 'Owner',
   'host': 'Host',
@@ -205,15 +204,15 @@ await conn.sendMessage(m.chat, {
       let dash = `*───━•〔 DASHBOARD 〕•━───*`
       let dash2 = `*───━•[DASHBOARD]•━───*`
   	let m1 = `*❖─···─〈*`
-      let m2 = `*│𖥂*`
-      let m3 = `*┗───···─────𖡹*`
-      let m4 = `*│𖤓*`
+      let m2 = `│𖥂`
+      let m3 = `┗───···─────𖡹`
+      let m4 = `│𖤓`
       
       // COMMAND MENU
-      let cc = `*╭────━•〔*`
-      let c1 = `*〕•━────┐*`
-      let c2 = `*│⌬*`
-      let c3 = `*╰───···─────*𖡹\n`
+      let cc = `╭────━•〔`
+      let c1 = `〕•━────┐`
+      let c2 = `│⌬`
+      let c3 = `╰───···─────𖡹\n`
       let c4 = `\n⌕ ❙❘❙❙❘❙❚❙❘❙❙❚❙❘❙❘❙❚❙❘❙❙❚❙❘❙❙❘❙❚❙❘ ⌕\n     `
       
       // LOGO L P
@@ -560,21 +559,7 @@ function _0x5c09(_0x28b840, _0x244043) {
 /*
 * Karena Ga Guna Lagi hahaha, Remake By ᴋʏᴀᴍɪ×͜×࿐, Dev×͜×, 𝕱𝖚𝖆𝖉𝖃𝖉×፝֟͜×
 */
-//await conn.reply(m.chat, text, fkon, { contextInfo: { isForwarded: false, forwardingScore: 9999, externalAdReply :{ mediaType: 1, mediaUrl: thumb3, title: `List Menu ${teks}`, thumbnail: { url: thumb2 }, thumbnailUrl: thumb3, renderLargerThumbnail: true }}})
-//conn.sendVin2ButtonLoc(m.chat, await conn.resize(thumb3, 300, 180), text, 'Thank You Dave ×͜× & ᴋʏᴀᴍɪ×͜×࿐ for developing this bot so well', 'ɢʀᴜʙ ʙᴏᴛ', 'https://chat.whatsapp.com/EAR7T7H59vOJz8KcwMP179', 'ᴅᴏɴᴀsɪ', '.donate', 'ɪɴғᴏ ʙᴏᴛt', '.botinfo', fkon)
-await conn.relayMessage(m.chat,  {
-    requestPaymentMessage: {
-      currencyCodeIso4217: 'USD',
-      amount1000: fsizedoc,
-      requestFrom: m.sender,
-      noteMessage: {
-      extendedTextMessage: {
-      text: text,
-      contextInfo: {
-      mentionedJid: [m.sender],
-      externalAdReply: {
-      showAdAttribution: true
-      }}}}}}, {})
+await conn.reply(m.chat, text, m, { mentions: [m.sender], contextInfo: { forwardingScore: 9999, isForwarded: true, externalAdReply :{ mediaType: 1, mediaUrl: 'https://telegra.ph/file/d31904fff9c1a480c01b7.jpg', title: 'ғᴜᴀᴅ-ʙᴏᴛ彡', thumbnail: { url: 'https://telegra.ph/file/d31904fff9c1a480c01b7.jpg' }, thumbnailUrl: 'https://telegra.ph/file/d31904fff9c1a480c01b7.jpg', sourceUrl: 'https://wa.me/stickerpack/whatsappcuppy', renderLargerThumbnail: true }}})
 function _0x1766() {
     const _0x1c60e8 = ['3ezQcUH', '.nameown', '.cekversi', '725770ccnUBU', 'sig', 'pdf', 'buffer', '305624SHQwwY', '233195fjGJSZ', '72BjUaMS', '2869867kBKaey', 'chat', '6NokiEm', '72PsFaxu', '🎐Sewa Bot', '1832yREmVQ', '205026IsvCrH', '132IBvmfp', '3329164htczQJ', 'Author', '7315FCLnNH', 'sendMessage', 'sender'];
     _0x1766 = function() {

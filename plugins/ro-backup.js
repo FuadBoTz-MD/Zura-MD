@@ -39,7 +39,7 @@ conn.reply('6285954708804' + '@s.whatsapp.net', `*🗓️ Database:* ${date}`, n
  }
  
  handler.help = ['backup']
-handler.tags = ['owner']
+handler.tags = ['developer']
 handler.command = /^(backup)$/i
 handler.rowner = true
 
