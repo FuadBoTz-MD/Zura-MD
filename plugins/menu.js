@@ -1,4 +1,6 @@
 import fs from 'fs'
+import os from 'os'
+import { sizeFormatter } from 'human-readable'
 import fetch from 'node-fetch'
 import moment from 'moment-timezone'
 let handler = async (m, { conn, usedPrefix: _p, __dirname, args }) => {
@@ -7,12 +9,19 @@ await conn.sendMessage(m.chat, {
             text: '🦋',
             key: m.key,
           }})
-let pp = 'https://telegra.ph/file/b0b58f446bd5935ee6c00.jpg'
+let formatSize = sizeFormatter({
+	std: 'JEDEC',
+	decimalPlaces: '2',
+	keepTrailingZeroes: false,
+	render: (literal, symbol) => `${literal} ${symbol}B`
+})
 let totalf = Object.values(global.plugins).filter(
     (v) => v.help && v.tags
   ).length;
 let who = m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted ? m.quoted.sender : m.fromMe ? conn.user.jid : m.sender
 let name = conn.getName(who)
+
+let pp = 'https://telegra.ph/file/b0b58f446bd5935ee6c00.jpg'
 
 let ucpn = `${ucapan()}`
 let info = `Hallo ${name}👋🏻* \n*${ucpn}*\n\nSelamat datang di dashboard bot kami!*\n\n- Kami berharap Anda akan menikmati pengalaman berinteraksi dengan bot kami yang ramah dan intuitif.\n\n- Kami telah menyertakan berbagai fitur yang dapat membantu Anda mengelola dan meningkatkan kinerja bot Anda.\n\n- Kami berharap Anda akan menikmati menggunakan dashboard bot kami dan semoga Anda mendapatkan manfaat dari fitur-fitur yang kami tawarkan.
@@ -35,11 +44,13 @@ Untuk Menampilkan Semua Fitur BOT
 3. ɢᴜɴᴀᴋᴀɴ ʙᴏᴛ ᴅᴇɴɢᴀɴ *ʙɪᴊᴀᴋ*
 4. ᴊᴀɴɢᴀɴ ᴛᴇʟғᴏɴ/ᴄᴀʟʟ ʙᴏᴛ!
 
-*❖─···─〈* *I N F O  B O T*
-[!] ~ Memory Used : ${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)}MB
-[!] ~ Size Database: ${megabit()} MB
-[!] ~ Total Fitur: ${totalf}
-┗───···─────𖡹
+*❖─···─〈* *I N F O  S E R V E R*
+~ ᴍᴇᴍᴏʀʏ : ${formatSize(os.totalmem() - os.freemem())} / ${formatSize(os.totalmem())}
+~ ᴍᴇᴍᴏʀʏ ᴜsᴇᴅ : ${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)}MB
+~ sɪᴢᴇ ᴅᴀᴛᴀʙᴀsᴇ: ${megabit()} MB
+~ ᴛᴏᴛᴀʟ ғɪᴛᴜʀ: ${totalf}
+- ɴᴏᴅᴇᴊs: ${process.version}
+◈------------------◈------------------◈
 
 
 ]=❏ *Tʜᴀɴᴋs Tᴏ* ❏=[

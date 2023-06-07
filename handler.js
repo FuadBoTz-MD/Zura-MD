@@ -972,7 +972,6 @@ esteh: 0,
 export async function participantsUpdate({ id, participants, action }) {
     if (opts['self'])
         return
-    // if (id in conn.chats) return // First login will spam
     if (this.isInit)
         return
     if (global.db.data == null)
@@ -980,47 +979,38 @@ export async function participantsUpdate({ id, participants, action }) {
     let chat = global.db.data.chats[id] || {}
     let text = ''
     switch (action) {
-        case 'add':
+                case 'add':
         case 'remove':
             if (chat.welcome) {
                 let groupMetadata = await this.groupMetadata(id) || (conn.chats[id] || {}).metadata
                 for (let user of participants) {
-                    let pp = './src/avatar_contact.png'
+                let welc = 'WELCOME'
+                    let outss = 'GOOD BYE'
+                    let pp = 'https://telegra.ph/file/2d06f0936842064f6b3bb.png'
                     try {
-                        pp = await this.profilePictureUrl(user, 'image').catch( _ => hwaifu.getRandom())
+                        pp = await this.profilePictureUrl(user, 'image')
                     } catch (e) {
                     } finally {
-                        text = (action === 'add' ? (chat.sWelcome || this.welcome || conn.welcome || 'Selamat Datang, @user!').replace('@subject', await this.getName(id)).replace('@desc', groupMetadata.desc?.toString() || 'unknow') :
-                            (chat.sBye || this.bye || conn.bye || 'Selamat tinggal, @user!')).replace('@user', `${this.getName(user)}`)
-                        let wel = API('hardianto', '/api/welcome3', {
-                                profile: pp,
-                                name: await this.getName(user),
-                                bg: 'https://telegra.ph/file/56f57eb054e6ca580c502.jpg',
-                                namegb: await this.getName(id),
-                                member: groupMetadata.participants.length
+                        text = (action === 'add' ? (chat.sWelcome || this.welcome || conn.welcome || 'Welcome, @user').replace('@subject', await this.getName(id)).replace('@desc', groupMetadata.desc?.toString() || 'unknow') :
+                            (chat.sBye || this.bye || conn.bye || 'Bye @user')).replace(/@user/g, '@' + user.split`@`[0])
+let wel = API('popcat', '/welcomecard', {
+                                background: 'https://telegra.ph/file/4cc31db6304eb90149b88.jpg',
+                                text1: welc,
+                                text2: await this.getName(user),
+                                text3: 'MemberCount: ' + groupMetadata.participants.length, 
+                                avatar: pp,
                             })
-                            let lea = API('hardianto', '/api/goodbye3', {
-                                profile: pp,
-                                name: await this.getName(user),
-                                bg: 'https://telegra.ph/file/56f57eb054e6ca580c502.jpg',
-                                namegb: await this.getName(id),
-                                member: groupMetadata.participants.length
+                            let lea = API('popcat', '/welcomecard', {
+                                background: 'https://telegra.ph/file/4cc31db6304eb90149b88.jpg',
+                                text1: outss,
+                                text2: await this.getName(user),
+                                text3: 'MemberCount: ' + groupMetadata.participants.length,
+                                avatar: pp,
                             })
-                            await this.sendButtonDoc(id, text, wm, action == 'add' ? '𝙸𝚗𝚝𝚛𝚘' : '𝙱𝚎𝚋𝚊𝚗 𝙽𝚐𝚞𝚛𝚊𝚗𝚐:v', action === 'add' ? '.intro' : 'ok', 0, { 
-        contextInfo: {
-            isForwarded: true, 
-            forwardingScore: 9999,
-            externalAdReply :{ 
-                mediaType: 1, 
-                title: this.getName(user), 
-                thumbnail: await(await fetch(pp)).buffer(), 
-                sourceUrl: sgc,
-                renderLargerThumbnail: true,
-            }
-        }
-    }
-)
-                   }
+
+this.sendFile(id, pp, 'pp.jpg', text, null, false, { mentions: [user] })
+  
+                    }
                 }
             }
             break

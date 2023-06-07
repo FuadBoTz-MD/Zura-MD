@@ -20,15 +20,15 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
     const transport = nodemailer.createTransport({
       service: 'gmail',
       auth: {
-        user: 'fuadbotzmd@gmail.com',
-        pass: 'pujovwfmdbymifsa' // disini mungkin pass akun emailmu udh gw coba tapi ga work
+        user: 'forest.herzog78@ethereal.email',
+        pass: 'f8g2feMRpqK9QYY5yv' // disini mungkin pass akun emailmu udh gw coba tapi ga work
       }
     });
 
     const mailOptions = {
       from: {
-        name: 'FuadBoTz-MD',
-        address: 'fuadbotzmd@gmail.com'
+        name: 'Forest Herzog',
+        address: 'forest.herzog78@ethereal.email'
       },
       to: args[0],
       subject: 'Email Verification',

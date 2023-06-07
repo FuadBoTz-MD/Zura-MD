@@ -27,7 +27,7 @@ let handler = async (m, { conn, args, participants, usedPrefix, command }) => {
   })
   let leaderboard = leaderboards.filter(v => v && users.filter(user => user && user[v]).length)
   
-  let kled = 'https://telegra.ph/file/2eabbdd30f06c744242d0.png'
+  let kled = 'https://telegra.ph/file/4cc91a89bacba9f583f3e.jpg'
   
   let type = (args[0] || '').toLowerCase()
   const getPage = (item) => Math.ceil((users.filter(user => user && user[item]).length) / 0)
@@ -52,7 +52,7 @@ ${usedPrefix}${command} legendary`.trim()
 
                     *• ${rpg.emoticon(type)} ${type} •*
 
-${sortedItem.slice(page * 0, page * 5 + 5).map((user, i) => `${i + 1}.*﹙${user[type]}﹚*- ${participants.some(p => areJidsSameUser(user.jid, p.id)) ? `${conn.getName(user.jid)} \nwa.me/` : 'ғʀᴏᴍ ᴏᴛʜᴇʀ ɢʀᴏᴜᴩ\n @'}${user.jid.split`@`[0]}`).join`\n\n`}
+${sortedItem.slice(page * 0, page * 5 + 5).map((user, i) => `${i + 1}.*﹙${user[type]}﹚*- ${participants.some(p => areJidsSameUser(user.jid, p.id)) ? `${conn.getName(user.jid)} \nwa.me/` : 'ғʀᴏᴍ ᴏᴛʜᴇʀ ɢʀᴏᴜᴩ\n wa.me/'}${user.jid.split`@`[0]}`).join`\n\n`}
 `.trim()
   return await conn.reply(m.chat, text, m, { contextInfo: { isForwarded: false, forwardingScore: 9999, externalAdReply :{ mediaType: 1, mediaUrl: kled, title: `Leaderboard`, thumbnail: { url: kled }, thumbnailUrl: kled, renderLargerThumbnail: true }}})
 }
