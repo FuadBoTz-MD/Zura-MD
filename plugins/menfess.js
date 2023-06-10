@@ -14,7 +14,7 @@ let who = m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted ? m
     	let id = + new Date
         let pp = 'https://telegra.ph/file/2870f05b11447e5c80fb1.jpg'
         let link = 'https://chat.whatsapp.com/EAR7T7H59vOJz8KcwMP179'
-        let tek = `Hai @${data.jid.split('@')[0]}, kamu menerima pesan Menfess nih.\n\nDari: *${name}*\nPesan: \n${pesan}\n\nMau balas pesan ini? bisa kok. tulis aja sesuatu lalu kirim nanti terkirim otomatis ke ${name}`
+        let tek = `Hai Kak ${data.jid.split('@')[0]}, kamu menerima pesan Menfess nih.\n\nDari: *${name}*\nPesan: \n${pesan}\n\nMau balas pesan ini? bisa kok. tulis aja sesuatu lalu kirim nanti terkirim otomatis ke ${name}`
         await conn.reply(data.jid, tek, m, { contextInfo: { mentionedJid: [who], isForwarded: true, forwardingScore: 9999, externalAdReply :{ mediaType: 1, mediaUrl: pp, title: '*「 Konfess 」*', thumbnail: { url: pp }, thumbnailUrl: pp, sourceUrl: 'https://chat.whatsapp.com/EAR7T7H59vOJz8KcwMP179', renderLargerThumbnail: true }}})
         .then(() => {
             m.reply('Berhasil mengirim pesan menfess.')

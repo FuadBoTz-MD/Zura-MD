@@ -1,28 +1,15 @@
-let { MessageType } = (await import('@adiwajshing/baileys')).default
-let fetch = (await import('node-fetch')).default
-let handler = async(m, { conn, command, args, usedPrefix, DevMode }) => {
+import fetch from 'node-fetch'
+let handler = async (m, { conn, usedPrefix, text, args, command }) => {
+let who = m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.fromMe ? conn.user.jid : m.sender
+let pp = await conn.profilePictureUrl(who).catch(_ => hwaifu.getRandom())
+let name = await conn.getName(who)
 
-  let name = m.sender
-
-  let noah = `6283837709331`
-  let ppown = await conn.profilePictureUrl(noah + '@s.whatsapp.net', 'image').catch(_ => hwaifu.getRandom()) 
-  let nowner = `${noah.split`@`[0]}@s.whatsapp.net`
-  let fkonn = { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(m.chat ? { remoteJid: '6283837709331@s.whatsapp.net' } : {}) }, message: { contactMessage: { displayName: `${await conn.getName(name)}`, vcard: `BEGIN:VCARD\nVERSION:3.0\nN:;a,;;;\nFN:${name}\nitem1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD`}}}
-
-  let sok3 = `6283837709331@s.whatsapp.net`
-  try {
-
-  let sentMsg = await conn.sendContactArray(m.chat, [
-
-    [`${sok3.split('@')[0]}`, `http://ī.am/𝔉𝔲𝔞𝔡𝔛𝔶×፝֟͜×࿐`, `🎗 Team Developer`, `🚫 Don't call Owner`, `alvinrinegar@gmail.com`, `🇮🇩 Indonesia`, `➣ https://instagram.com/fuadxy99`, `Developerku  ͡❛ ᴥ ͡❛`],
-  ], fkonn)
-  
-  } catch {
-
- conn.reply(m.chat, `Halo kak @${m.sender.split(`@`)[0]} itu nomor team developerku, jangan di apa-apain ya kak😖`, sentMsg, {mentions: [m.sender]})
-
-  }
+if (command == 'owner') {
+  let vcard = `BEGIN:VCARD\nVERSION:3.0\nN:;${author};;;\nFN:${author}\nORG:${author}\nTITLE:\nitem1.TEL;waid=6283837709331:+62 838-3770-9331\nitem1.X-ABLabel:${author}\nX-WA-BIZ-DESCRIPTION:${htjava} ᴛɪᴅᴀᴋ ᴍᴇɴᴇʀɪᴍᴀ sᴀᴠᴇ ᴋᴏɴᴛᴀᴋ.\nX-WA-BIZ-NAME:${author}\nEND:VCARD`
+await conn.sendMessage(m.chat, { contacts: { displayName: wm, contacts: [{ vcard }] }}, { quoted: fkontak })
+m.reply('Follow Instagram.com/@fuadxy99\n Dan kirim ss ke owner untuk mendapatkan Premium secara gratis, selama 190 Hari')
+ }
 }
+handler.tags = ['info']
 handler.command = /^(owner)$/i
-
 export default handler

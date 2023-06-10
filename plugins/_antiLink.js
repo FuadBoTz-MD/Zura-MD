@@ -22,7 +22,8 @@ export async function before(m, { isAdmin, isBotAdmin }) {
             }
         }
     };
-
+    let hapus = m.key.participant;
+    let bang = m.key.id;
     let kled = 'https://telegra.ph/file/e949b3455fb6aa5b4f243.png';
 
     const isGroupLink = linkRegex.exec(m.text);
@@ -34,7 +35,8 @@ export async function before(m, { isAdmin, isBotAdmin }) {
                 return true;
         }
 
-        await conn.reply(m.chat, `*Gʀᴏᴜʙ Lɪɴᴋ Dᴇᴛᴇᴄᴛ!*${isBotAdmin ? '' : '\n\n_❬Bot Bukan Admin❭_'}`, fkon, {
+        await this.sendMessage(m.chat, { delete: { remoteJid: m.chat, fromMe: false, id: bang, participant: hapus }})
+        await conn.reply(m.chat, `*Gʀᴏᴜʙ Lɪɴᴋ Dᴇᴛᴇᴄᴛ!*${isBotAdmin ? '' : '\n\n_❬Bot Bukan Admin❭_'}`, m, {
             contextInfo: {
                 isForwarded: false,
                 forwardingScore: 9999,
@@ -50,7 +52,6 @@ export async function before(m, { isAdmin, isBotAdmin }) {
         });
 
         if (isBotAdmin && bot.restrict) {
-            await conn.groupParticipantsUpdate(m.chat, [m.sender], 'remove');
         } else if (!bot.restrict) {
             return m.reply('Owner disable auto kick!');
         }
