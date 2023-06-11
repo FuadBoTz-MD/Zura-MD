@@ -56,7 +56,7 @@ await conn.sendMessage(m.chat, {
           }})
 	let tags
 	let teks = `${args[0]}`.toLowerCase()
-  let arrayMenu = ['all', 'anime', 'update', 'maker', 'edukasi', 'news', 'random', 'game', 'xp', 'islamic', 'stiker', 'rpg', 'kerangajaib', 'quotes', 'admin', 'group', 'premium', 'internet', 'anonymous', 'nulis', 'downloader', 'tools', 'fun', 'database','quran', 'vote', 'nsfw', 'audio', 'sound', 'info', 'owner', 'developer', 'store', 'virus']
+  let arrayMenu = ['all', 'anime', 'update', 'maker', 'edukasi', 'news', 'random', 'game', 'xp', 'islamic', 'stiker', 'rpg', 'kerangajaib', 'quotes', 'admin', 'group', 'premium', 'internet', 'anonymous', 'nulis', 'downloader', 'tools', 'fun', 'database', 'quran', 'vote', 'nsfw', 'audio', 'sound', 'info', 'owner', 'developer', 'jadibot', 'store', 'virus']
   if (!arrayMenu.includes(teks)) teks = '404'
   if (teks == 'all') tags = {
   'main': 'Main',
@@ -86,6 +86,7 @@ await conn.sendMessage(m.chat, {
   'developer': 'Developer',
   'owner': 'Owner',
   'host': 'Host',
+  'jadibot': 'Jadi Bot',
   'advanced': 'Advanced',
   'info': 'Info',
   'store': 'Store Menu',
@@ -184,7 +185,10 @@ await conn.sendMessage(m.chat, {
     'host': 'Host',
     'advanced': 'Advanced'
   }
- if (teks == 'nsfw') tags = {
+  if (teks == 'jadibot') tags = {
+    'jadibot': 'Jadibot'
+  }
+  if (teks == 'nsfw') tags = {
     'nsfw': 'Nsfw'
   }
   if (teks == 'quotes') tags = {

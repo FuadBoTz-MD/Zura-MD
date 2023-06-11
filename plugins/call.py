@@ -11,9 +11,3 @@ if "Registration succes." in pos:
 	print (f"[✓] Sukses Spam Call")
 else:
 	print (f"[❌] Gagal Spam Call")
-
-handler.command = ['calll']
-handler.tags = ['fun']
-handler.help = ['calll']
-
-export default handler

@@ -1,33 +1,36 @@
-import fs from 'fs'
-import { createHash } from 'crypto'
+import moment from 'moment-timezone'
 import fetch from 'node-fetch'
-let Reg = /\|?(.*)([.|] *?)([0-9]*)$/i
 
-let handler = async function (m, { conn, text, usedPrefix, command }) {
-
-let named = conn.getName(m.sender)
-let fkon = { key: { fromMe: false, participant: `${m.sender.split`@`[0]}@s.whatsapp.net`, ...(m.chat ? { remoteJid: '0@s.whatsapp.net' } : {}) }, message: { contactMessage: { displayName: `${named}`, vcard: `BEGIN:VCARD\nVERSION:3.0\nN:;a,;;;\nFN:${named}\nitem1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD`}}}
-let who = m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.fromMe ? conn.user.jid : m.sender
-let kled = 'https://telegra.ph/file/ae8721ed9eb78064e7df7.jpg'
+let handler = async (m, { conn, args }) => {
+   let res = await fetch('https://api.github.com/repos/ShionMDv/ShionMDv')
+   let pp = 'https://telegra.ph/file/344ca06078289bb8fe8dc.jpg'
+   let link = 'https://chat.whatsapp.com/EAR7T7H59vOJz8KcwMP179'
+   let json = await res.json()
 
 let info = `
-Script: 
-https://Private-Bang-Lu-Mau-Ngapain-Kontol.com
+*乂  I N F O  -  S C R I P T*
 
- *Base :*
-github.com/Jikarinka
+    ◦  *Name* : ${json.name}
+    ◦  *Visitor* : ${json.watchers_count}
+    ◦  *Size* : ${(json.size / 1024).toFixed(2)} MB
+    ◦  *Updated* : ${moment(json.updated_at).format('DD/MM/YY - HH:mm:ss')}
+    ◦  *Url* : ${json.html_url}
+    ◦  *Base :* github.com/Jikarinka
+    
+    ${json.forks_count} Forks · ${json.stargazers_count} Stars · ${json.open_issues_count} Issues
+  
 
  *N o t e :*
-• *Script Ini Rawan Dijual Karena Berisi Fitur² Langka!*
-• Oleh Karena Itu Kami Memprivate Script Bot Ini!
-• Gabakal dikasih walau ngemis-ngemis:v
-• Jika menemukan bug di script, harap lapor owner
-• Bot Sewa Only Bukan Bot Gratisan, kalo mau memasukan BOT ke grup lain minta izin owner dulu ya:)
+• *sᴄʀɪᴘᴛ ɪɴɪ ʀᴀᴡᴀɴ ᴅɪ ᴊᴜᴀʟ ᴋᴀʀᴇɴᴀ ʙᴇʀɪsɪ ғɪᴛᴜʀ² ʟᴀɴɢᴋᴀ!*
+• ᴏʟᴇʜ ᴋᴀʀᴇɴᴀ ɪᴛᴜ ᴋᴀᴍɪ ᴍᴇᴍᴘʀɪᴠᴀᴛ sᴄʀɪᴘᴛ ʙᴏᴛ ɪɴɪ ( ! )
+• ɢᴀʙᴀᴋᴀʟ ᴅɪ ᴋᴀsɪʜ ᴡᴀʟᴀᴜ ɴɢᴇᴍɪs² :ᴠ
+• ᴊɪᴋᴀ ᴍᴇɴᴇᴍᴜᴋᴀɴ ʙᴜɢ ᴅɪ sᴄʀɪᴘᴛ, ʜᴀʀᴀᴘ ʟᴀᴘᴏʀ ᴏᴡɴᴇʀ
+• ʙᴏᴛ sᴇᴡᴀ ᴏɴʟʏ ʙᴜᴋᴀɴ ʙᴏᴛ ɢʀᴀᴛɪsᴀɴ, ᴋᴀʟᴏ ᴍᴀᴜ ᴍᴇᴍᴀsᴜᴋᴋᴀɴ ᴋᴇ ɢʀᴜᴘ ʟᴀɪɴ ᴍɪɴᴛᴀ ɪᴢɪɴ ᴏᴡɴᴇʀ ᴅᴜʟᴜ ʏᴀ :)
 `
-await conn.reply(m.chat, info, fkon, { contextInfo: { isForwarded: false, forwardingScore: 9999, externalAdReply :{ mediaType: 1, mediaUrl: kled, title: `                      ⎙  Script ${wm}`, thumbnail: { url: kled }, thumbnailUrl: kled, renderLargerThumbnail: true }}}) // Title sengaja gw bikin gitu
+await conn.reply(m.chat, info, m, { mentions: [m.sender], contextInfo: { forwardingScore: 9999, isForwarded: true, externalAdReply :{ mediaType: 1, mediaUrl: pp, title: '乂 ғᴜᴀᴅ-ᴍᴅ ᴠ⁷彡', thumbnail: { url: pp }, thumbnailUrl: pp, sourceUrl: link, renderLargerThumbnail: true }}})
 }
 
-handler.customPrefix = /^(.script|.sc)$/i
-handler.command = new RegExp
-
+handler.help = ['scbot']
+handler.tags = ['info']
+handler.command = /^sc(ript(bot)?|bot)?$/i
 export default handler

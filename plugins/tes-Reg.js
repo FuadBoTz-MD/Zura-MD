@@ -1,13 +1,12 @@
 import { format } from 'util';
 import nodemailer from 'nodemailer';
-
-const axios = await import('axios');
+import axios from 'axios';
 
 let handler = async (m, { conn, args, usedPrefix, command }) => {
   let users = db.data.users[m.sender];
   try {
     if (users.registered) return conn.reply(m.chat, `✅ Kamu sudah terdaftar.`, m);
-    if (!args || !args[0]) return conn.reply(m.chat, `${usedPrefix + command} 'email@gmail.com`, m);
+    if (!args || !args[0]) return conn.reply(m.chat, `${usedPrefix + command} 'email@gmail.com'`, m);
     if (!/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/ig.test(args[0])) return conn.reply(m.chat, 'Email tidak valid.', m);
     let emails = Object.values(db.data.users).filter(v => v.email).map(v => v.email);
     if (emails.includes(args[0])) return conn.reply(m.chat, 'Email sudah terdaftar!', m);
@@ -20,15 +19,15 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
     const transport = nodemailer.createTransport({
       service: 'gmail',
       auth: {
-        user: 'forest.herzog78@ethereal.email',
-        pass: 'f8g2feMRpqK9QYY5yv' // disini mungkin pass akun emailmu udh gw coba tapi ga work
+        user: 'fuadbotzmd@gmail.com',
+        pass: 'dgulvuqouhdcsjpz' // disini mungkin pass akun emailmu udh gw coba tapi ga work
       }
     });
 
     const mailOptions = {
       from: {
-        name: 'Forest Herzog',
-        address: 'forest.herzog78@ethereal.email'
+        name: 'FuadBoTz-MD',
+        address: 'fuadbotzmd@gmail.com'
       },
       to: args[0],
       subject: 'Email Verification',

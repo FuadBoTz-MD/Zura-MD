@@ -1,18 +1,20 @@
 import fetch from 'node-fetch'
-let handler = m => m
 
-handler.before = async (m) => {
-    let chat = global.db.data.chats[m.chat]
-    if (chat.simi && !chat.isBanned ) {
-        if (/^.*false|disnable|(turn)?off|0/i.test(m.text)) return
-        if (!m.text) return
-        let res = await fetch(global.API('https://api.simsimi.net', '/v2/', { text: encodeURIComponent(m.text), lc: "id" }, ''))
-        if (!res.ok) throw eror
-        let json = await res.json()
-        if (json.success == 'gapaham banh:v') return m.reply('lu ngetik apaaan sih')
-        await m.reply(`${json.success}`)
+export async function before(m, { isAdmin, isBotAdmin }) {
+if (m.isBaileys && m.fromMe)
         return !0
+    if (!m.isGroup) return !1
+    let chat = global.db.data.chats[m.chat]
+    let bot = global.db.data.settings[this.user.jid] || {}
+    if (chat.simi) {
+    try {
+        let api = await fetch("https://api.simsimi.net/v2/?text=" + encodeURIComponent(m.text) + "&lc=id")
+  let res = await api.json()
+  m.reply(`${res.success}`)
+  } catch (e) {
+  let api = await fetch("http://api.brainshop.ai/get?bid=153868&key=rcKonOgrUFmn5usX&uid=1&msg=" + encodeURIComponent(m.text))
+  let res = await api.json()
+  m.reply(`${res.cnt}`)
+  }
     }
-    return true
 }
-export default handler

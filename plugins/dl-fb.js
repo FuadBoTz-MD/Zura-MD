@@ -1,17 +1,14 @@
-//By: ZYKO MD
-import fetch from 'node-fetch'
-import fs from 'fs'
-let handler = async(m, { conn, groupMetadata, usedPrefix, text, args, command }) => {
-//let imgr = flaaa2
-if (!args[0]) throw `MASUKAN URL FB`
-let f = await fetch(`https://saipulanuar.ga/api/download/fb?url=${args[0]}`)
-m.reply('_Silahkan Tunggu..._')
-let data = await f.json()
-let x = data.result
-//let x = await f.json()
-let cap = `DOWNLOADER FACEBOOK`
-conn.sendFile(m.chat, x.sd, 'facebook.mp4', cap, m)
+import { facebookdl, facebookdlv2 } from '@bochilteam/scraper'
+let handler = async (m, { conn, args, usedPrefix, command }) => {
+if (!args[0]) throw `Use example ${usedPrefix + command} https://www.facebook.com/watch?v=636541475139*`
+const { result } = await facebookdl(args[0]).catch(async _ => await facebookdlv2(args[0]))
+for (const { url, isVideo } of result.reverse()) await conn.sendFile(m.chat, url, `facebook.${!isVideo ? 'bin' : 'mp4'}`, `✨ *ᴜʀʟ:* ${url}`, m)
+  let info = `💝 *ʟᴏᴀᴅɪɴɢ.....*
+  `.trim()
+  throw info
 }
-handler.help = ['facebook'].map(v => v + ' <url>')
+handler.help = ['facebook2'].map(v => v + ' <url>')
+handler.tags = ['downloader']
 handler.command = /^((facebook|fb)(downloder|dl)?)$/i
+handler.exp = 35
 export default handler
