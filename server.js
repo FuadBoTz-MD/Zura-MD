@@ -11,7 +11,7 @@ function connect(conn, PORT) {
     let server = global.server = createServer(app)
     // app.use(express.static(path.join(__dirname, 'views')))
     let _qr = 'invalid'
-
+/* hehe:v */
     conn.ev.on('connection.update', function appQR({ qr }) {
         if (qr) _qr = qr
     })

@@ -4,7 +4,7 @@ const cp = require('child_process')
 const { promisify } = require('util')
 const exec = promisify(cp.exec).bind(cp)
 
-
+/* gbt nambahin aja🗿 */
 function start(cmd) {
 	return spawn(cmd, [], {
 		stdio: ['inherit', 'inherit', 'inherit', 'ipc']
