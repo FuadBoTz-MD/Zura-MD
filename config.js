@@ -1,21 +1,29 @@
-// Credits, jangan dihapus atau diubah!
+// SCRIPT RECODE BY FuadXy💌
+// JANGAN DI HAPUS📣
 
-// - - THANKS TO - -
-// • Allah SWT
-// • FuadXy (Me)
-// • Kyami
-// • Davegkw
-// • Dll
-import { watchFile, unwatchFile, readFileSync } from 'fs'
+/*
+• Thanks To •
+~ Allah SWT
+~ Ortu
+~ FuadXy (Me)
+~ All Creator BOT
+~ Penyedia Base
+*/
+
+//GA TAU CARA EDIT NYA? CHAT AUTHOR↑↑↑
+
+import { watchFile, unwatchFile } from 'fs'
 import chalk from 'chalk'
 import { fileURLToPath } from 'url'
 import moment from 'moment-timezone'
 
+//WAKTU BISA DI GANTI KE JAKARTA (WIB) /MAKASSAR (WITA)
+
 /*⫘⫘⫘⫘ WAKTU ⫘⫘⫘⫘⫘*/
-let wibh = moment.tz('Asia/Jakarta').format('HH')
-    let wibm = moment.tz('Asia/Jakarta').format('mm')
-    let wibs = moment.tz('Asia/Jakarta').format('ss')
-    let wktuwib = `${wibh} H ${wibm} M ${wibs} S`
+let witah = moment.tz('Asia/Jakarta').format('HH')
+    let witam = moment.tz('Asia/Jakarta').format('mm')
+    let witas = moment.tz('Asia/Jakarta').format('ss')
+    let wktuwib = `${witah}H ${witam}M ${witas}S`
     
     let d = new Date(new Date + 3600000)
     let locale = 'id'
@@ -30,39 +38,32 @@ let wibh = moment.tz('Asia/Jakarta').format('HH')
       month: 'long',
       year: 'numeric'
     })
-
+      
+    
 /*⫘⫘⫘⫘⫘ MEDIA SOSIAL ⫘⫘⫘⫘*/
-global.sig = 'https://www.instagram.com/fuadxy99' //Instagram mu
-global.sgh = 'https://github.com/FuadBoTz-MD' //Github mu
-global.sgc = 'https://chat.whatsapp.com/EAR7T7H59vOJz8KcwMP179' //Group WhatsApp mu
-global.sdc = '----' //Discord Mu
-global.snh = 'https://nhentai.net/g/365296/' //Make ini ana gausah di ganti.
-
-/*⫘⫘⫘⫘ALL PAYMENT⫘⫘⫘⫘⫘*/
-global.pdana = '083837709331' //Dana
-global.povo = '083837709331' //Ovo
-global.pgopay = '----' //Gopay
-global.ppulsa = '083837709331' //Pulsa 
-global.ppulsa2 = '085954708804' //Pulsa, Kalau nomor cuma 1, yg ini kasih tanda -
-global.psaweria = 'Unavailable' //Saweria
+// kalo ga punya ketik "-" atau biarin aja biar ada creditsnya :v
+global.sig = 'https://instagram.com/fuadxy99'
+global.sgh = 'https://github.com/FuadBoTz-MD'
+global.sgc = 'https://chat.whatsapp.com/EAR7T7H59vOJz8KcwMP179'
+global.snh = 'https://nhentai.net/g/365296/' //Make ini aja gausah di ganti.
 
 /*⫘⫘⫘⫘ GLOBAL NOMOR ⫘⫘⫘⫘⫘*/
-global.nomorbot = '6283837709331' //Nomor Bot mu
-global.nomorown = '6285954708804' //Nomormu
-global.namebot = '𝑭𝒖𝒂𝒅𝑩𝒐𝑻𝒛' //Nama bot mu
-global.nameown = 'ī.am/𝕱𝖚𝖆𝖉𝖃𝖉×፝֟͜×࿐'
-//Nama mu
+global.nomorbot = '6283138381932'
+global.nomorown = '6283837709331' //FuadXy
+global.adminn = '6285954708804' //Zura //JANGAN DI GANTI BAGIAN INI KARNA ADA DI CREATOR, CREATOR2 & CREATOR3
+global.admin = '6283837709331' //FuadXy /INI LAGI
+global.admin2 = '6285954708804' //Zura //INI JUGA
+global.namebot = 'ᴢᴜʀᴀ-ʙᴏᴛ'
+global.nameown = '𝑭𝒖𝒂𝒅𝑻𝒛𝒚'
 
 
-/*⫘⫘⫘⫘ OWNER ⫘⫘⫘⫘⫘*/
-global.owner = JSON.parse(readFileSync("./src/owner.json", "utf-8"));
-
-/*⫘⫘⫘⫘ DEVELOPER ⫘⫘⫘⫘⫘*/
-global.developer = [
-  ['6283837709331'],  
-  ['6285954708804', '𝑭𝒖𝒂𝒅𝑿𝒚࿐', true],
-  ]
-global.mods = [] // Ntar Tunggu Update Selanjutnya
+/*⫘⫘⫘⫘ STAFF ⫘⫘⫘⫘⫘*/
+global.owner = [
+  ['6285954708804'],
+  ['6283837709331', 'Puad', true]
+  // [number, dia creator/owner?, dia developer?]
+] // Put your number here
+global.mods = [] // Want some help?
 global.prems = [] // Premium user bukan disini nambahinnya, ketik .addprem @user 10
 
 
@@ -91,7 +92,7 @@ global.APIKeys = { // APIKey Here
   // 'https://website': 'apikey'
   'https://api.xteam.xyz': 'NezukoTachibana281207',
   'https://anabotofc.herokuapp.com/': 'AnaBot',
-  'https://api.lolhuman.xyz': 'Papah-Chan',
+  'https://api.lolhuman.xyz': 'DaveKgw',
   'https://zahirr-web.herokuapp.com': 'zahirgans',
   'https://api.zeks.xyz': 'apivinz',
   'https://pencarikode.xyz': 'pais',
@@ -103,45 +104,31 @@ global.APIKeys = { // APIKey Here
   'https://hardianto.xyz': 'hardianto',
   'https://leyscoders-api.herokuapp.com': 'dappakntlll'
 }
-// FREE APIKEY, WAJIB SUBSCRIBE:V
 // kalau mau ganti apikey mu sendiri terserah
 
 /*⫘⫘⫘⫘ WATERMAK ⫘⫘⫘⫘⫘*/
 //GANTI JANGAN NGASAL.
-global.wm = 'ī.am/𝕱𝖚𝖆𝖉𝖃𝖉×፝֟͜×' //Wm
-global.wm2 = '┏━°⌜──⇌• 𝑭𝒖𝒂𝒅𝑩𝒐𝑻𝒛 •⇋──⌟°━┓' //Name Wm
-global.wm3 = '- - ┈┈∘┈˃̶𝑭𝒖𝒂𝒅𝑩𝒐𝑻𝒛˂̶┈∘┈┈ --'
-global.botdate = `🗓️️ 𝗗𝗮𝘁𝗲: ${week} ${date}`
-global.bottime = `𝗧 𝗜 𝗠 𝗘 : ${wktuwib}`
-global.titlebot = 'IG:@fuadxy99' //Ganti serah lu
-global.author = '𝑭𝒖𝒂𝒅𝑿𝒚࿐' //Wm author
+global.wm = 'ᴢᴜʀᴀ-ʙᴏᴛ' //Main Watermark
+global.wm2 = '𝑭𝒖𝒂𝒅𝑻𝒛𝒚~'
+global.wm3 = '❁ ᴢᴜʀᴀ'
+global.botdate = `⫹⫺ 𝑫𝒂𝒕𝒆 : ${week} ${date}`
+global.bottime = `Time : ${wktuwib}`
+global.titlebot = '🌱 𝑹𝒑𝒈 | 𝑾𝒉𝒂𝒕𝒔𝑨𝒑𝒑 𝑩𝒐𝒕'
+global.author = '® 𝑭𝒖𝒂𝒅𝑿𝒚'
 
 
 /*⫘⫘⫘⫘ LOGO ⫘⫘⫘⫘⫘*/
-// INI JUGA GANTI SETERAH MU
-global.thumb = 'https://telegra.ph/file/32a3028e40c56d09efbb5.jpg' //Thumbnail nya
-global.thumb2 = 'https://telegra.ph/file/8651406e637258fe27cef.jpg' //Thumbnail 2
-global.thumb3 = 'https://telegra.ph/file/650100a8fd34069f3162f.jpg' //Thumbnail 3
-global.myp = 'https://telegra.ph/file/a23bd29d62456a8846de9.jpg' //Thumb xp-my
-global.darktzy = 'https://telegra.ph/file/93b22cdaf16e8c2b7ce83.jpg'
-global.thumbbc = 'https://telegra.ph/file/1fcb0b336dd2eaea095fa.jpg' //Image Bcgcb
-// global.giflogo = 'https://telegra.ph/file/8ace5460d97b5a575a248.jpg' //Bebas
-global.intro = 'https://telegra.ph/file/cc045445603302e0d2a6f.jpg' //Tambahan Doang
-global.mwife = 'https://telegra.ph/file/64bba9fa465e34bc38b7c.jpg' //Tambahan Doang
 
-global.fla = [
-'https://www6.flamingtext.com/net-fu/proxy_form.cgi?&imageoutput=true&script=sketch-name&doScale=true&scaleWidth=800&scaleHeight=500&fontsize=100&fillTextType=1&fillTextPattern=Warning!&text=',
-'https://flamingtext.com/net-fu/proxy_form.cgi?&imageoutput=true&script=water-logo&script=water-logo&fontsize=90&doScale=true&scaleWidth=800&scaleHeight=500&fontsize=100&fillTextColor=%23000&shadowGlowColor=%23000&backgroundColor=%23000&text=',
-'https://flamingtext.com/net-fu/proxy_form.cgi?&imageoutput=true&script=crafts-logo&fontsize=90&doScale=true&scaleWidth=800&scaleHeight=500&text=',
-'https://flamingtext.com/net-fu/proxy_form.cgi?&imageoutput=true&script=amped-logo&doScale=true&scaleWidth=800&scaleHeight=500&text=',
-'https://www6.flamingtext.com/net-fu/proxy_form.cgi?&imageoutput=true&script=sketch-name&doScale=true&scaleWidth=800&scaleHeight=500&fontsize=100&fillTextType=1&fillTextPattern=Warning!&text=',
-'https://www6.flamingtext.com/net-fu/proxy_form.cgi?&imageoutput=true&script=sketch-name&doScale=true&scaleWidth=800&scaleHeight=500&fontsize=100&fillTextType=1&fillTextPattern=Warning!&fillColor1Color=%23f2aa4c&fillColor2Color=%23f2aa4c&fillColor3Color=%23f2aa4c&fillColor4Color=%23f2aa4c&fillColor5Color=%23f2aa4c&fillColor6Color=%23f2aa4c&fillColor7Color=%23f2aa4c&fillColor8Color=%23f2aa4c&fillColor9Color=%23f2aa4c&fillColor10Color=%23f2aa4c&fillOutlineColor=%23f2aa4c&fillOutline2Color=%23f2aa4c&backgroundColor=%23101820&text='
-]
-//global.fla Jangan di ganti
+// INI JANGAN DI GANTI 
+global.thumb = 'https://telegra.ph/file/579113e790fe526d676cf.jpg' //Main Thumbnail 
+global.thumb2 = 'https://telegra.ph/file/08d0001275c10376b1861.jpg'
+global.thumbbc = 'https://telegra.ph/file/5fa7fcb5225c85f1cab25.jpg' //For broadcast
+
+global.fla = 'https://www6.flamingtext.com/net-fu/proxy_form.cgi?&imageoutput=true&script=sketch-name&doScale=true&scaleWidth=800&scaleHeight=500&fontsize=100&fillTextType=1&fillTextPattern=Warning!&text='
 
 /*⫘⫘⫘⫘ LOADING ⫘⫘⫘⫘⫘*/
-global.wait = '```「▰▰▰▱▱▱▱▱▱▱」Loading...```'
-global.eror = 'Acsess Denied!'
+global.wait = '```[ ! ] Wait....```'
+global.eror = '*Akses Ditolak!!*'
 
 /*⫘⫘⫘⫘ DOCUMENT ⫘⫘⫘⫘⫘*/
 global.dpptx = 'application/vnd.openxmlformats-officedocument.presentationml.presentation'
@@ -150,41 +137,24 @@ global.dxlsx = 'application/vnd.openxmlformats-officedocument.spreadsheetml.shee
 global.dpdf = 'application/pdf'
 global.drtf = 'text/rtf'
 
-global.thumbdoc = 'https://telegra.ph/file/e936c6fda97bdbc70d982.jpg' //Ganti jadi foto Bot
+global.thumbdoc = 'https://i.postimg.cc/SsPTYJqJ/ff1a0dc41ded2e9930cfa9a1416a797c.jpg'
 
 /*⫘⫘⫘⫘ FAKE SIZE ⫘⫘⫘⫘⫘*/
 global.fsizedoc = '99999999999999' // 10TB
 global.fpagedoc = '999' //Gausah di ganti.
 
 /*⫘⫘⫘⫘ HIASAN ⫘⫘⫘⫘⫘*/
-// DEFAULT MENU
-global.htki = '❀⊱┄┄┄┄┄┄┄'
-global.htka = '┄┄┄┄┄┄┄⊰❀'
-global.dmenut = '┏━━━━━━━►' //top
-global.dmenub = '❘⎇ ' //body
-global.dmenub2 = '❘' //body for info cmd on Default menu
-global.dmenuf = '𝙏𝙃𝘼𝙉𝙆𝙎 𝙏𝙊\n\n◐ Allah SWT\n◐Fokus Id\n◐ᴋʏᴀᴍɪ×͜×࿐\n◐DaveKgw\n◐BallBot\n◐\n◐Dan Pemakai bot ini\n◐I love you\n\n*The one and only FuadXy࿐*' //footer
-global.emojis = '❀'
-
-// COMMAND MENU
-global.cmenut = '┏━━━━━━━►' //top
-global.cmenuh = '◄•━────┐' //header
-global.cmenub = '❘ 𖤓 ︎' //body
-global.cmenuf = '╰──────⫘⫘⫘⫘⫘⫘─────┘\n' //footer
-global.cmenua = '\n⌕ ❙❘❙❙❘❙❚❙❘❙❙❚❙❘❙❘❙❚❙❘❙❙❚❙❘❙❙❘❙❚❙❘ ⌕\n' //after
-global.pmenus = '│⸙︎' //pembatas menu selector
+global.pmenus = '*│𖤓*' //pembatas menu selector
 
 global.lopr = '🅟' //LOGO PREMIUM ON MENU.JS
 global.lolm = '🅛' //LOGO FREE ON MENU.JS
 global.htjava = '❀'    //hiasan Doang :v
 global.hsquere = ['⛶','❏','⫹⫺']
 
-
 /*⫘⫘⫘⫘ STICKER ⫘⫘⫘⫘⫘*/
-global.stickpack = '𝑭𝒖𝒂𝒅𝑩𝒐𝑻𝒛'
-global.stickauth = `© 𝑩𝒚 𝑭𝒖𝒂𝒅𝑿𝒚`
-
-global.multiplier = 38 // The higher, The harder levelup
+global.stickpack = '© 𝑩𝒚'
+global.stickauth = `𝑫𝒂𝒓𝒌𝑻𝒛𝒚~`
+global.multiplier = 100 // The higher, The harder levelup
 
 /*⫘⫘⫘⫘ GLOBAL EMOJI ⫘⫘⫘⫘⫘*/
 global.rpg = {
@@ -195,6 +165,7 @@ global.rpg = {
       limit: '🎫',
       health: '❤️',
       exp: '✨',
+      role: '🎖',
       money: '💹',
       bank: '🏦',
       potion: '🥤',
@@ -221,7 +192,8 @@ global.rpg = {
       iron: '⛓️',
       gold: '🪙',
       emerald: '❇️',
-      upgrader: '🧰'
+      upgrader: '🧰',
+      arlok: '🧭'
       
     }
     let results = Object.keys(emot).map(v => [v, new RegExp(v, 'gi')]).filter(v => v[1].test(string))
@@ -234,7 +206,7 @@ global.fpay = {
 	key: {
 		remoteJid: '0@s.whatsapp.net',
 		fromMe: false,
-		id: 'FuadTzy',
+		id: 'FuadXy',
 		participant: '0@s.whatsapp.net'
 	},
 	message: {
@@ -261,7 +233,7 @@ global.fpayment = (m) => {
 		key: {
 		remoteJid: '0@s.whatsapp.net',
 		fromMe: false,
-		id: 'FuadTzy',
+		id: 'FuadXy',
 		participant: '0@s.whatsapp.net'
 	},
 	message: {
@@ -271,7 +243,7 @@ global.fpayment = (m) => {
 			requestFrom: (m !== null && m !== undefined) ? m.sender : '0@s.whatsapp.net',
 			noteMessage: {
 				extendedTextMessage: {
-					text: (m !== null && m !== undefined) ? m.text : 'Follow IG: @fuadxy99'
+					text: (m !== null && m !== undefined) ? m.text : 'IG: fuadxy99'
 				}
 			},
 			expiryTimestamp: 999999999,

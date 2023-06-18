@@ -15,7 +15,6 @@ let list = Object.entries(global.db.data.users)
 *🌌 𝑳𝒊𝒎𝒊𝒕 :* ${user.limit}
 *💵 𝑴𝒐𝒏𝒆𝒚 :* ${user.money}
 *✨ 𝑬𝒙𝒑 :* ${user.exp}`
-await conn.sendPresenceUpdate('composing', m.chat)
 conn.reply(m.chat, cap, fkontak, { mentions: await conn.parseMention(cap) })
 }
 handler.help = ['dompet', 'limit']

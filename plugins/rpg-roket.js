@@ -1,3 +1,4 @@
+
 let handler = async (m, { conn }) => {
     let __timers = (new Date - global.db.data.users[m.sender].lastroket)
     let _timers = (300000 - __timers)
@@ -89,42 +90,30 @@ global.db.data.users[m.sender].roket += 1
 
 
 setTimeout(() => {
-                     conn.sendHydrated(m.chat, hsl, botdate, null, null, null, null, null, [
-      [null, null]
-    ], null)
+                     conn.reply(m.chat, hsl, m)
                      }, 27000) 
                
                      setTimeout(() => {
-                     conn.sendHydrated(m.chat, rokit4, botdate, null, null, null, null, null, [
-      [null, null]
-    ], null)
+                     conn.reply(m.chat, rokit4, m)
                       }, 25000)
                 
                      setTimeout(() => {
-                     conn.sendHydrated(m.chat, rokit3, botdate, null, null, null, null, null, [
-      [null, null]
-    ], null)
+                     conn.reply(m.chat, rokit3, m)
                      }, 20000) 
                         
                      setTimeout(() => {
-                     conn.sendHydrated(m.chat, rokit2, botdate, null, null, null, null, null, [
-      [null, null]
-    ], null)
+                     conn.reply(m.chat, rokit2, m)
                      }, 15000) 
                     
                      setTimeout(() => {
-                     conn.sendHydrated(m.chat, rokit, botdate, null, null, null, null, null, [
-      [null, null]
-    ], null)
+                     conn.reply(m.chat, rokit, m)
                      }, 10000) 
                      
                      setTimeout(() => {
-                     conn.sendHydrated(m.chat, `🔍 ${name} Mencari Lokasi.....`, botdate, null, null, null, null, null, [
-      [null, null]
-    ], null)
+                     conn.reply(m.chat, `🔍 ${name} Mencari Lokasi.....`, m)
                      }, 0) 
   user.lastroket = new Date * 1
-    } else conn.sendButton(m.chat, `Sepertinya Anda Sudah Kecapekan Silahkan Istirahat Dulu sekitar\n🕔 *${timers}*`, wm, null, [['inventory', '.inv']], m )
+    } else conn.reply(m.chat, `Sepertinya Anda Sudah Kecapekan Silahkan Istirahat Dulu sekitar\n🕔 *${timers}*`, m )
 }
 handler.help = ['roket']
 handler.tags = ['rpg']

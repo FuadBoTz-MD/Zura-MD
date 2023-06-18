@@ -31,9 +31,10 @@ const timeout = 1800000
                                      global.db.data.users[m.sender].bibitjeruk -= 500
                                      global.db.data.users[m.sender].bibitapel -= 500
                                      global.db.data.users[m.sender].lastberkebon = new Date * 1
-                                     m.reply(`Selamat kamu mendapatkan : \n+${pisangpoin} Pisang\n+${manggapoin} Mangga\n+${anggurpoin} Anggur\n+${jerukpoin} Jeruk\n+${apelpoin} Apel\n+1 Tiketcoin`)
+                                     let hsl = `Selamat ${conn.getName(m.sender)}, Kamu mendapatkan : \n+${pisangpoin} Pisang\n+${manggapoin} Mangga\n+${anggurpoin} Anggur\n+${jerukpoin} Jeruk\n+${apelpoin} Apel\n+1 Tiketcoin`
+                                     conn.reply(m.chat, hsl, m)
                                      setTimeout(() => {
-					                      conn.reply(m.chat, `Waktunya berkebon lagi kak 📣`, m)
+					                      conn.reply(m.chat, `Waktunya berkebon lagi kak 😅`, m)
 					                  }, timeout)
                                   } else m.reply(`Pastikan bibit anggur kamu *500* untuk bisa berkebon`)
                               } else m.reply(`Pastikan bibit jeruk kamu *500* untuk bisa berkebon`)
@@ -46,10 +47,7 @@ handler.tags = ['rpg']
 handler.command = /^(berkebon)/i
 
 handler.group = true
-
-handler.fail = null
 handler.limit = true
-
 
 export default handler
 

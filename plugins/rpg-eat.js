@@ -9,7 +9,7 @@ let handler = async (m, {
     let type = (args[0] || '').toLowerCase()
     let _type = (args[1] || '').toLowerCase()
     let jualbeli = (args[0] || '').toLowerCase()
-    const list = `
+    const list = `「 *E A T I N G* 」
 ╭──『 ғᴏᴏᴅ 』
 │⬡ typing command↓
 │   ${usedPrefix + command } rendang
@@ -35,6 +35,9 @@ let handler = async (m, {
 │⬡ 🍖 *paus bakar*
 │⬡ 🍖 *kepiting bakar*
 ╰───────────────
+example .makan ayamgoreng 
+
+gunakan spasi
 `.trim()
     //try {
     if (/makan|eat/i.test(command)) {
@@ -222,97 +225,7 @@ let handler = async (m, {
         } else conn.reply( m.chat, `Stamina kamu sudah penuh`, m)
         break
           default:
-       await conn.sendMessage(m.chat, {
-				text: list,
-				footer: author,
-				title: '「 *E A T I N G* 」',
-				buttonText: "E A T",
-				sections: [{
-					title: "List Featured",
-					rows: [{
-					title: "Ayam Bakar 🍖",
-				rowId: ".eat ayambakar",
-				description: "Memakan Ayam Bakar +20 Stamina"
-			},{
-				title: "Ayam Goreng 🍗",
-				rowId: ".eat ayambakar",
-				description: "Memakan Ayam Goreng +20 Stamina"
-			},{
-				title: "Opor Ayam 🍜",
-				rowId: ".eat oporayam",
-				description: "Memakan Opor Ayam +20 Stamina"
-			},{
-				title: "Steak 🥩",
-				rowId: ".eat steak",
-				description: "Memakan Steak +20 Stamina"
-			},{
-				title: "Rendang 🥘",
-				rowId: ".eat rendang",
-				description: "Memakan Rendang +20 Stamina"
-			},{
-				title: "Gulai Ayam 🍲",
-				rowId: ".eat gulaiayam",
-				description: "Memakan Gulai Ayam +20 Stamina"
-			},{
-				title: "Babi Panggang 🥠",
-				rowId: ".eat babipanggang",
-				description: "Memakan Babi Panggang +20 Stamina"
-			},{
-				title: "Roti 🍞",
-				rowId: ".eat roti",
-				description: "Memakan Roti +20 Stamina"
-			},{
-				title: "Sushi 🍣",
-				rowId: ".eat sushi",
-				description: "Memakan Sushi +20 Stamina"
-			},{
-				title: "Soda 🍺",
-				rowId: ".eat soda",
-				description: "Meminum Soda +20 Stamina"
-			},{
-				title: "Bandage 💉",
-				rowId: ".eat bandage",
-				description: "Memakai Bandage +25 Healt"
-			},{
-				title: "Ganja ☘️",
-				rowId: ".eat ganja",
-				description: "Mengonsumsi Ganja +90 Healt"
-			},{
-				title: "Vodka 🍷",
-				rowId: ".eat vodka",
-				description: "Meminum Vodka +25 Stamina"
-			},{
-					title: "ikan Bakar 🍖",
-				rowId: ".eat ikanbakar",
-				description: "Memakan ikan Bakar +20 Stamina"
-			},{
-					title: "lele Bakar 🍖",
-				rowId: ".eat lelebakar",
-				description: "Memakan lele Bakar +20 Stamina"
-			},{
-					title: "nila Bakar 🍖",
-				rowId: ".eat nilabakar",
-				description: "Memakan nila Bakar +20 Stamina"
-			},{
-					title: "bawal Bakar 🍖",
-				rowId: ".eat bawalbakar",
-				description: "Memakan bawal Bakar +20 Stamina"
-			},{
-					title: "udang Bakar 🍖",
-				rowId: ".eat udangbakar",
-				description: "Memakan udang Bakar +20 Stamina"
-			},{
-					title: "paus Bakar 🍖",
-				rowId: ".eat pausbakar",
-				description: "Memakan paus Bakar +20 Stamina"
-			},{
-					title: "kepiting Bakar 🍖",
-				rowId: ".eat kepitingbakar",
-				description: "Memakan kepiting Bakar +20 Stamina"
-			}
-					]
-				}]
-			})
+       await conn.reply(m.chat, list, m)
             }
     } else if (/p/i.test(command)) {
       const count = args[2] && args[2].length > 0 ? Math.min(99999999, Math.max(parseInt(args[2]), 1)) : !args[2] || args.length < 4 ? 1 :Math.min(1, count)

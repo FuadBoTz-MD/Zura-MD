@@ -1,131 +1,83 @@
-let { MessageType } = (await import('@adiwajshing/baileys')).default
+let handler = async (m, { conn, command, text, usedPrefix }) => {
+  const petInfo = `
+      🐈 • CAT: 2 pet token
+      🐕 • DOG: 2 pet token
+      🐎 • HORSE: 4 pet token
+      🦊 • FOX: 6 pet token
 
-let handler  = async (m, { conn, command, args, usedPrefix, DevMode }) => {
-  let type = (args[0] || '').toLowerCase()
-  let _type = (args[0] || '').toLowerCase()
-  let user = global.db.data.users[m.sender]
-  
-  //----------HARGA
-  let hdog = 2
-  let hcat = 2
-  let hhorse = 4
-  let hfox = 6
-  let hpetfood = 950
+    🍖 • PET FOOD: 950 money
+  `
+  const petStore = `
+    *PET STORE*
+    🐈 • CAT
+    🐕 • DOG
+    🐎 • HORSE
+    🦊 • FOX
+    🍖 • PETFOOD
 
-let caption = `
-🐈 • *ᴄᴀᴛ:* 
-➞ ${hcat} ᴘᴇᴛ ᴛᴏᴋᴇɴ🔖
-
-🐕 • *ᴅᴏɢ:*
-➞ ${hdog} ᴘᴇᴛ ᴛᴏᴋᴇɴ🔖
-
-🐎 • *ʜᴏʀsᴇ:* 
-➞ ${hhorse} ᴘᴇᴛ ᴛᴏᴋᴇɴ🔖
-
-🦊 • *ғᴏx:* 
-➞ ${hfox} ᴘᴇᴛ ᴛᴏᴋᴇɴ🔖
-
-🍖 • *ᴘᴇᴛ ғᴏᴏᴅ:*
-➞ ${hpetfood} ᴍᴏɴᴇʏ 💹
-
-- - - - - - - - - - - - - - - - - - - - -
-
-${htki} ABILITY ${htka}
-➞ 🐈 • ᴄᴀᴛ :
-- ɪɴᴄʀᴇᴀsᴇ ʜᴇᴀʟᴛʜ 5% / ʟᴇᴠᴇʟ ᴡʜᴇɴ ᴜsᴇ *.ʜᴇᴀʟ*
-
-➞ 🐕 • ᴅᴏɢ :
-- ᴄᴏᴍɪɴɢ sᴏᴏɴ...
-
-➞ 🐎 • ʜᴏʀsᴇ :
-- ᴄᴏᴍɪɴɢ sᴏᴏɴ...
-
-➞ 🦊 • ғᴏx :
-- ᴄᴏᴍɪɴɢ sᴏᴏɴ...
-`
-const sections = [
-   {
-	title: "- ᴘ ᴇ ᴛ  s ᴛ ᴏ ʀ ᴇ -",
-	rows: [
-	    {title: "🐈 • ᴄᴀᴛ", rowId: ".petshop cat"},
-	    {title: "🐕 • ᴅᴏɢ", rowId: ".petshop dog"},
-	    {title: "🐎 • ʜᴏʀsᴇ", rowId: ".petshop horse"},
-	    {title: "🦊 • ғᴏx", rowId: ".petshop fox"},
-	    {title: "🍖 • ᴘᴇᴛ ғᴏᴏᴅ", rowId: ".petshop petfood"},
-	]
-    },
-]
-
-const listMessage = {
-  text: `*${htki} PET SHOP ${htka}*`,
-  footer: caption,
-  title: ' ',
-  buttonText: "ʙ ᴜ ʏ",
-  sections
-}
+    ${usedPrefix}petshop <petname>
+    ${usedPrefix}feed <petname>
+  `
 
   try {
-    if (/petshop/i.test(command)) {
-      const count = args[1] && args[1].length > 0 ? Math.min(99999999, Math.max(parseInt(args[1]), 1)) : !args[1] || args.length < 3 ? 1 : Math.min(1, count)
-        switch (type) {
-          case 'cat':
-          if (user.cat > 0) return m.reply('ʏᴏᴜ ᴀʟʀᴇᴀᴅʏ ʜᴀᴠᴇ ɪᴛ!')
-            if(user.pet < hcat) return m.reply(`ʏᴏᴜʀ ᴘᴇᴛ ᴛᴏᴋᴇɴ ɴᴏᴛ ᴇɴᴏᴜɢʜ !`)
-            global.db.data.users[m.sender].pet -= hcat
-            global.db.data.users[m.sender].cat += 1
-            conn.sendButton(m.chat, `*${htki} NEW PET !${htka}*`, `🎉 ᴄᴏɴɢʀᴀᴛᴜʟᴀᴛɪᴏɴs, ʏᴏᴜ ʜᴀᴠᴇ ᴘᴜʀᴄʜᴀsᴇᴅ ᴘᴇᴛ *ᴄᴀᴛ*`, null, [['ɪɴᴠᴇɴᴛᴏʀʏ', '.inv'],['ғᴇᴇᴅ', `.feed ${type}`]],m)
-            break
-          case 'dog':
-          if (user.dog > 0) return m.reply('ʏᴏᴜ ᴀʟʀᴇᴀᴅʏ ʜᴀᴠᴇ ɪᴛ!')
-            if(user.pet < hdog) return m.reply(`ʏᴏᴜʀ ᴘᴇᴛ ᴛᴏᴋᴇɴ ɴᴏᴛ ᴇɴᴏᴜɢʜ !`)
-            global.db.data.users[m.sender].pet -= hdog
-            global.db.data.users[m.sender].dog += 1
-            conn.sendButton(m.chat, `*${htki} NEW PET !${htka}*`, `🎉 ᴄᴏɴɢʀᴀᴛᴜʟᴀᴛɪᴏɴs, ʏᴏᴜ ʜᴀᴠᴇ ᴘᴜʀᴄʜᴀsᴇᴅ ᴘᴇᴛ *ᴅᴏɢ*`, null, [['ɪɴᴠᴇɴᴛᴏʀʏ', '.inv'],['ғᴇᴇᴅ', `.feed ${type}`]],m)
-            break
-          case 'fox':
-          if (user.fox > 0) return m.reply('ʏᴏᴜ ᴀʟʀᴇᴀᴅʏ ʜᴀᴠᴇ ɪᴛ!')
-            if(user.pet < hfox) return m.reply(`ʏᴏᴜʀ ᴘᴇᴛ ᴛᴏᴋᴇɴ ɴᴏᴛ ᴇɴᴏᴜɢʜ !`)
-            global.db.data.users[m.sender].pet -= hfox
-            global.db.data.users[m.sender].fox += 1
-            conn.sendButton(m.chat, `*${htki} NEW PET !${htka}*`, `🎉 ᴄᴏɴɢʀᴀᴛᴜʟᴀᴛɪᴏɴs, ʏᴏᴜ ʜᴀᴠᴇ ᴘᴜʀᴄʜᴀsᴇᴅ ᴘᴇᴛ *ғᴏx*`, null, [['ɪɴᴠᴇɴᴛᴏʀʏ', '.inv'],['ғᴇᴇᴅ', `.feed ${type}`]],m)
-            break
-          case 'horse':
-          if (user.horse > 0) return m.reply('ʏᴏᴜ ᴀʟʀᴇᴀᴅʏ ʜᴀᴠᴇ ɪᴛ!')
-            if(user.pet < hhorse) return m.reply(`ʏᴏᴜʀ ᴘᴇᴛ ᴛᴏᴋᴇɴ ɴᴏᴛ ᴇɴᴏᴜɢʜ !`)
-            global.db.data.users[m.sender].pet -= hhorse
-            global.db.data.users[m.sender].horse += 1
-            conn.sendButton(m.chat, `*${htki} NEW PET !${htka}*`, `🎉 ᴄᴏɴɢʀᴀᴛᴜʟᴀᴛɪᴏɴs, ʏᴏᴜ ʜᴀᴠᴇ ᴘᴜʀᴄʜᴀsᴇᴅ ᴘᴇᴛ *ʜᴏʀsᴇ*`, null, [['ɪɴᴠᴇɴᴛᴏʀʏ', '.inv'],['ғᴇᴇᴅ', `.feed ${type}`]],m)
-            break
-          case 'petfood':
-          if (global.db.data.users[m.sender].money >= hpetfood * count) {
-            global.db.data.users[m.sender].petFood += count * 1
-            global.db.data.users[m.sender].money -= hpetfood * count
-            conn.sendButton(m.chat, `*${htki} BUYING ${htka}*`, `sᴜᴄᴄᴇssғᴜʟʟ ʙᴏᴜɢʜᴛ *${count}* ᴘᴇᴛ ғᴏᴏᴅ, ғᴏʀ *${hpetfood * count}* ᴍᴏɴᴇʏ !`,null, [['ɪɴᴠᴇɴᴛᴏʀʏ', '.inv']], m)
-          } else conn.reply(m.chat, `ʏᴏᴜʀ ᴍᴏɴᴇʏ ɴᴏᴛ ᴇɴᴏᴜɢʜ !`, m) 
-            break
-            
-          default:
-            return await conn.sendMessage(m.chat, listMessage, {quoted: m})
+    if (/^petshop$/i.test(command)) {
+      return conn.reply(m.chat, petStore, m)
+    } else if (/^(cat|dog|fox|horse|petfood)$/i.test(command)) {
+      if (/cat|dog|fox|horse/i.test(command)) {
+        let petname = command.toLowerCase()
+        if (global.db.data.users[m.sender][petname] > 0) {
+          return m.reply(`🐾 Kamu sudah punya *${petname}*`)
         }
-    } else if (/Ughh/i.test(command)) {
-      const count = args[2] && args[2].length > 0 ? Math.min(99999999, Math.max(parseInt(args[2]), 1)) : !args[2] || args.length < 4 ? 1 :Math.min(1, count)
-      switch (_type) {
-        case 't':
-          break
-        case '':
-          break
-
-        default:
-          return conn.sendButton( m.chat, caption, wm, null, [`⋮☰ Menu`, `.menu`], m)
+        let cost = {
+          cat: 2,
+          dog: 2,
+          horse: 4,
+          fox: 6
+        }[petname]
+        if (global.db.data.users[m.sender].pet < cost) {
+          return m.reply(`🪙 Kamu butuh ${cost} pet token`)
+        }
+        global.db.data.users[m.sender].pet -= cost
+        global.db.data.users[m.sender][petname] += 1
+        return m.reply(`🛍️ Sukses membeli *${petname}*`)
+      } else if (/^petfood/i.test(command)) {
+        let count = text ? parseInt(text.trim()) : 1
+        if (isNaN(count)) {
+          return m.reply(`Gunakan perintah ${usedPrefix}petshop <pet> atau ${usedPrefix}feed <pet>`)
+        }
+        if (global.db.data.users[m.sender].money < count * 950) {
+          return m.reply("💰 Uangmu Tidak Cukup")
+        }
+        global.db.data.users[m.sender].money -= count * 950
+        global.db.data.users[m.sender].petFood += count
+        m.reply("*🧊 Success!* Kamu baru saja membeli * " + count + " * pet food.")
       }
+    } else if (/^feed$/i.test(command)) {
+      let petname = text.toLowerCase()
+      if (!/cat|dog|fox|horse/i.test(petname) || !global.db.data.users[m.sender][petname]) {
+        return m.reply(`❌ Hewan peliharaanmu tidak terdaftar.`)
+      }
+      if (global.db.data.users[m.sender].petFood < 1) {
+        return m.reply(`🍖 Kamu perlukan petfood`)
+      }
+      global.db.data.users[m.sender].petFood -= 1
+      let exp = Math.ceil(Math.random() * 100)
+      global.db.data.users[m.sender].exp += exp
+      m.reply(`🍗 Hewan peliharaanmu sangat senang, exp +${exp}`)
+    } else {
+      return conn.reply(m.chat, petInfo.trim() + '\n\nKamu memiliki:\n' + Object.entries(global.db.data.users[m.sender]).filter(([key]) => /^[a-z]{3,4}$/.test(key)).map(([key, value]) => `${key}: ${value}`).join('\n'), m)
     }
   } catch (err) {
-    m.reply("Error\n\n\n" + err.stack)
+    m.reply(err.message)
+    console.error(err)
   }
 }
-
-handler.help = ['petshop']
+handler.help = ['petshop', 'cat', 'dog', 'fox', 'horse', 'feed', 'petfood']
 handler.tags = ['rpg']
-handler.command = /^(petshop)/i
+handler.command = /^(petshop|cat|dog|fox|horse|feed|petfood)$/i
+handler.owner = false
+handler.mods = false
+handler.register = true
+handler.limit = true
 
-export default handler
+export default handler 

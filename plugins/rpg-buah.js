@@ -1,3 +1,4 @@
+
 let handler = async (m, { conn, usedPrefix, text }) => {
 	let user = global.db.data.users[m.sender]
 	let ini_txt = `[ *GUDANG BUAH KAMU* ]\n\n`

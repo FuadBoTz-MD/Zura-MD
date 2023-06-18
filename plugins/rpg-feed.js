@@ -1,5 +1,6 @@
+
 let handler = async (m, { conn, args, usedPrefix }) => {
-	let info = `*➞ ᴇxᴀᴍᴘʟᴇ:* ${usedPrefix}feed kucing
+	let info = `${htki} NOT FOUND ${htka}\n\n*➞ ᴇxᴀᴍᴘʟᴇ:* ${usedPrefix}feed kucing
 - - - - - - - - - - - - - - - - - - - - - - - - - 
 ${htki} LIST PET ${htka}
 🐈 • ᴄᴀᴛ
@@ -16,8 +17,8 @@ let pesan = pickRandom(['ɴʏᴜᴍᴍᴍ~', 'ᴛʜᴀɴᴋs', 'ᴛʜᴀɴᴋʏ�
     let anjing = global.db.data.users[m.sender].dog
     switch (type) {
         case 'fox':
-            if (rubah == 0) return conn.sendButton(m.chat, `${htki} NOT FOUND ${htka}`, 'ʏᴏᴜ ᴅᴏɴ\'ᴛ ʜᴀᴠᴇ ᴛʜɪs ᴘᴇᴛ ʏᴇᴛ!', null, [['ɪɴᴠᴇɴᴛᴏʀʏ', '.inv'],['ʙᴜʏ ᴘᴇᴛ', '.petshop']],m)
-            if (rubah == 10) return conn.sendButton(m.chat, `${htki} LEVEL MAX ${htka}`, 'ʏᴏᴜʀ ᴘᴇᴛ ɪs ᴍᴀx ʟᴇᴠᴇʟ !', null, [['ɪɴᴠᴇɴᴛᴏʀʏ', '.inv'],['ʙᴜʏ ɴᴇᴡ ᴘᴇᴛ', '.petshop']],m)
+            if (rubah == 0) return m.reply(`${htki} NOT FOUND ${htka}\n\nʏᴏᴜ ᴅᴏɴ'ᴛ ʜᴀᴠᴇ ᴛʜɪs ᴘᴇᴛ ʏᴇᴛ!`)
+            if (rubah == 10) return m.reply(`${htki} LEVEL MAX ${htka}\n\nʏᴏᴜʀ ᴘᴇᴛ ɪs ᴍᴀx ʟᴇᴠᴇʟ !`)
             let __waktur = (new Date - user.foxlastfeed)
             let _waktur = (600000 - __waktur)
             let waktur = clockString(_waktur)
@@ -32,15 +33,15 @@ let pesan = pickRandom(['ɴʏᴜᴍᴍᴍ~', 'ᴛʜᴀɴᴋs', 'ᴛʜᴀɴᴋʏ�
                         if (user.foxexp > naiklvl) {
                             user.fox += 1
                             user.foxexp -= (rubah * 100)
-                            conn.sendButton(m.chat, `${htki} LEVELUP ${htka}`, `*ᴄᴏɴɢʀᴀᴛs!* , ʏᴏᴜʀ ᴘᴇᴛ ʟᴇᴠᴇʟᴜᴘ`,null, [['ɪɴᴠᴇɴᴛᴏʀʏ', '.inv'],['sᴇᴇ ᴀʙɪʟɪᴛʏ ᴘᴇᴛ', '.petshop']], m)
+                            m.reply(`${htki} LEVELUP ${htka}\n\n*ᴄᴏɴɢʀᴀᴛs!* , ʏᴏᴜʀ ᴘᴇᴛ ʟᴇᴠᴇʟᴜᴘ`)
                         }
                     }
                 } else m.reply(`ʏᴏᴜʀ ᴘᴇᴛ ғᴏᴏᴅ ɴᴏᴛ ᴇɴᴏᴜɢʜ`)
-            } else conn.sendButton(m.chat, `${htki} COOLDOWN ${htka}`, `ʏᴏᴜʀ ᴘᴇᴛ ɪs ғᴜʟʟ, ᴛʀʏ ғᴇᴇᴅɪɴɢ ɪᴛ ᴀɢᴀɪɴ ɪɴ\n➞ *${waktur}*`, null, [['ɪɴᴠᴇɴᴛᴏʀʏ', '.inv']], m)
+            } else m.reply(`${htki} COOLDOWN ${htka}\n\nʏᴏᴜʀ ᴘᴇᴛ ɪs ғᴜʟʟ, ᴛʀʏ ғᴇᴇᴅɪɴɢ ɪᴛ ᴀɢᴀɪɴ ɪɴ\n➞ *${waktur}*`)
             break
         case 'cat':
-            if (kucing == 0) return conn.sendButton(m.chat, `${htki} NOT FOUND ${htka}`, 'ʏᴏᴜ ᴅᴏɴ\'ᴛ ʜᴀᴠᴇ ᴛʜɪs ᴘᴇᴛ ʏᴇᴛ!', null, [['ɪɴᴠᴇɴᴛᴏʀʏ', '.inv'],['ʙᴜʏ ᴘᴇᴛ', '.petshop']],m)
-            if (kucing == 10) return conn.sendButton(m.chat, `${htki} LEVEL MAX ${htka}`, 'ʏᴏᴜʀ ᴘᴇᴛ ɪs ᴍᴀx ʟᴇᴠᴇʟ !', null, [['ɪɴᴠᴇɴᴛᴏʀʏ', '.inv'],['ʙᴜʏ ɴᴇᴡ ᴘᴇᴛ', '.petshop']],m)
+            if (kucing == 0) return m.reply(`${htki} NOT FOUND ${htka}\n\nʏᴏᴜ ᴅᴏɴ\'ᴛ ʜᴀᴠᴇ ᴛʜɪs ᴘᴇᴛ ʏᴇᴛ!`)
+            if (kucing == 10) return m.reply(`${htki} LEVEL MAX ${htka}\n\nʏᴏᴜʀ ᴘᴇᴛ ɪs ᴍᴀx ʟᴇᴠᴇʟ !`)
             let __waktuc = (new Date - user.catlastfeed)
             let _waktuc = (600000 - __waktuc)
             let waktuc = clockString(_waktuc)
@@ -56,15 +57,15 @@ let pesan = pickRandom(['ɴʏᴜᴍᴍᴍ~', 'ᴛʜᴀɴᴋs', 'ᴛʜᴀɴᴋʏ�
                         if (user.catexp > naiklvl) {
                             user.cat += 1
                             user.catngexp -= (kucing * 100)
-                            conn.sendButton(m.chat, `${htki} LEVELUP ${htka}`, `*ᴄᴏɴɢʀᴀᴛs!* , ʏᴏᴜʀ ᴘᴇᴛ ʟᴇᴠᴇʟᴜᴘ`,null, [['ɪɴᴠᴇɴᴛᴏʀʏ', '.inv'],['sᴇᴇ ᴀʙɪʟɪᴛʏ ᴘᴇᴛ', '.petshop']], m)
+                            m.reply(`${htki} LEVELUP ${htka}\n\n*ᴄᴏɴɢʀᴀᴛs!* , ʏᴏᴜʀ ᴘᴇᴛ ʟᴇᴠᴇʟᴜᴘ`)
                         }
                     }
                 } else m.reply(`ʏᴏᴜʀ ᴘᴇᴛ ғᴏᴏᴅ ɴᴏᴛ ᴇɴᴏᴜɢʜ`)
-            } else conn.sendButton(m.chat, `${htki} COOLDOWN ${htka}`, `ʏᴏᴜʀ ᴘᴇᴛ ɪs ғᴜʟʟ, ᴛʀʏ ғᴇᴇᴅɪɴɢ ɪᴛ ᴀɢᴀɪɴ ɪɴ\n➞ *${waktuc}*`, null, [['ɪɴᴠᴇɴᴛᴏʀʏ', '.inv']], m)
+            } else m.reply(`${htki} COOLDOWN ${htka}\n\nʏᴏᴜʀ ᴘᴇᴛ ɪs ғᴜʟʟ, ᴛʀʏ ғᴇᴇᴅɪɴɢ ɪᴛ ᴀɢᴀɪɴ ɪɴ\n➞ *${waktuc}*`)
             break
         case 'dog':
-            if (anjing == 0) return conn.sendButton(m.chat, `${htki} NOT FOUND ${htka}`, 'ʏᴏᴜ ᴅᴏɴ\'ᴛ ʜᴀᴠᴇ ᴛʜɪs ᴘᴇᴛ ʏᴇᴛ!', null, [['ɪɴᴠᴇɴᴛᴏʀʏ', '.inv'],['ʙᴜʏ ᴘᴇᴛ', '.petshop']],m)
-            if (anjing == 10) return conn.sendButton(m.chat, `${htki} LEVEL MAX ${htka}`, 'ʏᴏᴜʀ ᴘᴇᴛ ɪs ᴍᴀx ʟᴇᴠᴇʟ !', null, [['ɪɴᴠᴇɴᴛᴏʀʏ', '.inv'],['ʙᴜʏ ɴᴇᴡ ᴘᴇᴛ', '.petshop']],m)
+            if (anjing == 0) return m.reply(`${htki} NOT FOUND ${htka}\n\nʏᴏᴜ ᴅᴏɴᴛ ʜᴀᴠᴇ ᴛʜɪs ᴘᴇᴛ ʏᴇᴛ!`)
+            if (anjing == 10) return m.reply(`${htki} LEVEL MAX ${htka}\n\nʏᴏᴜʀ ᴘᴇᴛ ɪs ᴍᴀx ʟᴇᴠᴇʟ !`)
             let __waktua = (new Date - user.doglastfeed)
             let _waktua = (600000 - __waktua)
             let waktua = clockString(_waktua)
@@ -79,15 +80,15 @@ let pesan = pickRandom(['ɴʏᴜᴍᴍᴍ~', 'ᴛʜᴀɴᴋs', 'ᴛʜᴀɴᴋʏ�
                         if (user.dogexp > naiklvl) {
                             user.dog += 1
                             user.dogexp -= (anjing * 100)
-                            conn.sendButton(m.chat, `${htki} LEVELUP ${htka}`, `*ᴄᴏɴɢʀᴀᴛs!* , ʏᴏᴜʀ ᴘᴇᴛ ʟᴇᴠᴇʟᴜᴘ`,null, [['ɪɴᴠᴇɴᴛᴏʀʏ', '.inv'],['sᴇᴇ ᴀʙɪʟɪᴛʏ ᴘᴇᴛ', '.petshop']], m)
+                            m.reply(`${htki} LEVELUP ${htka}\n\n*ᴄᴏɴɢʀᴀᴛs!* , ʏᴏᴜʀ ᴘᴇᴛ ʟᴇᴠᴇʟᴜᴘ`)
                         }
                     }
                 } else m.reply(`ʏᴏᴜʀ ᴘᴇᴛ ғᴏᴏᴅ ɴᴏᴛ ᴇɴᴏᴜɢʜ`)
-            } else conn.sendButton(m.chat, `${htki} COOLDOWN ${htka}`, `ʏᴏᴜʀ ᴘᴇᴛ ɪs ғᴜʟʟ, ᴛʀʏ ғᴇᴇᴅɪɴɢ ɪᴛ ᴀɢᴀɪɴ ɪɴ\n➞ *${waktua}*`, null, [['ɪɴᴠᴇɴᴛᴏʀʏ', '.inv']], m)
+            } else m.reply(`${htki} COOLDOWN ${htka}\n\nʏᴏᴜʀ ᴘᴇᴛ ɪs ғᴜʟʟ, ᴛʀʏ ғᴇᴇᴅɪɴɢ ɪᴛ ᴀɢᴀɪɴ ɪɴ\n➞ *${waktua}*`)
             break
         case 'horse':
-            if (kuda == 0) return conn.sendButton(m.chat, `${htki} NOT FOUND ${htka}`, 'ʏᴏᴜ ᴅᴏɴ\'ᴛ ʜᴀᴠᴇ ᴛʜɪs ᴘᴇᴛ ʏᴇᴛ!', null, [['ɪɴᴠᴇɴᴛᴏʀʏ', '.inv'],['ʙᴜʏ ᴘᴇᴛ', '.petshop']],m)
-            if (kuda == 10) return conn.sendButton(m.chat, `${htki} LEVEL MAX ${htka}`, 'ʏᴏᴜʀ ᴘᴇᴛ ɪs ᴍᴀx ʟᴇᴠᴇʟ !', null, [['ɪɴᴠᴇɴᴛᴏʀʏ', '.inv'],['ʙᴜʏ ɴᴇᴡ ᴘᴇᴛ', '.petshop']],m)
+            if (kuda == 0) return m.reply(`${htki} NOT FOUND ${htka}\n\nʏᴏᴜ ᴅᴏɴ\'ᴛ ʜᴀᴠᴇ ᴛʜɪs ᴘᴇᴛ ʏᴇᴛ!`)
+            if (kuda == 10) return m.reply(`${htki} LEVEL MAX ${htka}\n\nʏᴏᴜʀ ᴘᴇᴛ ɪs ᴍᴀx ʟᴇᴠᴇʟ !`)
             let __waktuk = (new Date - user.horselastfeed)
             let _waktuk = (600000 - __waktuk)
             let waktuk = clockString(_waktuk)
@@ -102,14 +103,14 @@ let pesan = pickRandom(['ɴʏᴜᴍᴍᴍ~', 'ᴛʜᴀɴᴋs', 'ᴛʜᴀɴᴋʏ�
                         if (user.horseexp > naiklvl) {
                             user.horse += 1
                             user.horseexp -= (kuda * 100)
-                            conn.sendButton(m.chat, `${htki} LEVELUP ${htka}`, `*ᴄᴏɴɢʀᴀᴛs!* , ʏᴏᴜʀ ᴘᴇᴛ ʟᴇᴠᴇʟᴜᴘ`,null, [['ɪɴᴠᴇɴᴛᴏʀʏ', '.inv'],['sᴇᴇ ᴀʙɪʟɪᴛʏ ᴘᴇᴛ', '.petshop']], m)
+                            m.reply(`${htki} LEVELUP ${htka}\n\n*ᴄᴏɴɢʀᴀᴛs!*  ʏᴏᴜʀ ᴘᴇᴛ ʟᴇᴠᴇʟᴜᴘ`)
                         }
                     }
                 } else m.reply(`ʏᴏᴜʀ ᴘᴇᴛ ғᴏᴏᴅ ɴᴏᴛ ᴇɴᴏᴜɢʜ`)
-            } else conn.sendButton(m.chat, `${htki} COOLDOWN ${htka}`, `ʏᴏᴜʀ ᴘᴇᴛ ɪs ғᴜʟʟ, ᴛʀʏ ғᴇᴇᴅɪɴɢ ɪᴛ ᴀɢᴀɪɴ ɪɴ\n➞ *${waktuk}*`, null, [['ɪɴᴠᴇɴᴛᴏʀʏ', '.inv']], m)
+            } else m.reply(`${htki} COOLDOWN ${htka}\n\nʏᴏᴜʀ ᴘᴇᴛ ɪs ғᴜʟʟ, ᴛʀʏ ғᴇᴇᴅɪɴɢ ɪᴛ ᴀɢᴀɪɴ ɪɴ\n➞ *${waktuk}*`)
             break
         default:
-            return conn.sendButton(m.chat, `${htki} NOT FOUND ${htka}`, info, null, [['ɪɴᴠᴇɴᴛᴏʀʏ', '.inv'],['ʙᴜʏ ᴘᴇᴛ', '.petshop']], m)
+            return m.reply(info)
     }
 }
 handler.help = ['feed [pet type]']

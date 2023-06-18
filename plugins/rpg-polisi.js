@@ -90,8 +90,9 @@ setTimeout(() => {
                      m.reply('🔍Mencari pelanggan.....')
                      }, 0) 
   user.lastngojek = new Date * 1
-    } else conn.sendButton(m.chat, `Sepertinya Anda Sudah Kecapekan Silahkan Istirahat Dulu sekitar\n🕔 *${timers}*`, wm, [['🧺inventory', '.inv']], m )
+    } else conn.reply(m.chat, `Sepertinya Anda Sudah Kecapean Silahkan Istirahat Dulu sekitar\n🕔 ${timers}`, m)
 }
+handler.help = ['polisi']
 handler.tags = ['rpg']
 handler.command = /^(polisi)$/i
 handler.register = true
@@ -100,9 +101,9 @@ export default handler
 
 
 function clockString(ms) {
-  let h = Math.floor(ms / 3600000)
-  let m = Math.floor(ms / 60000) % 60
-  let s = Math.floor(ms / 1000) % 60
-  console.log({ms,h,m,s})
-  return [h, m, s].map(v => v.toString().padStart(2, 0) ).join(':')
+  let d = isNaN(ms) ? '--' : Math.floor(ms / 86400000)
+  let h = isNaN(ms) ? '--' : Math.floor(ms / 3600000) % 24
+  let m = isNaN(ms) ? '--' : Math.floor(ms / 60000) % 60
+  let s = isNaN(ms) ? '--' : Math.floor(ms / 1000) % 60
+  return ['\n' + d, ' *Days ☀️*\n ', h, ' *Hours 🕐*\n ', m, ' *Minute ⏰*\n ', s, ' *Second ⏱️* '].map(v => v.toString().padStart(2, 0)).join('')
 }

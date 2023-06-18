@@ -5,11 +5,12 @@ let handler = async (m, {
 	let _timers = (500000 - __timers)
 	let timers = clockString(_timers)
 	let user = global.db.data.users[m.sender]
+
 	if (new Date - global.db.data.users[m.sender].lastberbru > 500000) {
 		let randomaku1 = `${Math.floor(Math.random() * 10)}`
 		let randomaku2 = `${Math.floor(Math.random() * 10)}`
-		let randomaku4 = `${Math.floor(Math.random() * 10)}`
 		let randomaku3 = `${Math.floor(Math.random() * 10)}`
+		let randomaku4 = `${Math.floor(Math.random() * 10)}`
 		let randomaku5 = `${Math.floor(Math.random() * 10)}`
 		let randomaku6 = `${Math.floor(Math.random() * 10)}`
 		let randomaku7 = `${Math.floor(Math.random() * 10)}`
@@ -18,7 +19,6 @@ let handler = async (m, {
 		let randomaku10 = `${Math.floor(Math.random() * 10)}`
 		let randomaku11 = `${Math.floor(Math.random() * 10)}`
 		let randomaku12 = `${Math.floor(Math.random() * 10)}`
-			.trim()
 
 		let rbrb1 = (randomaku1 * 1)
 		let rbrb2 = (randomaku2 * 1)
@@ -46,18 +46,25 @@ let handler = async (m, {
 		let anti11 = `${rbrb11}`
 		let anti12 = `${rbrb12}`
 
-		let hsl = `
-*《 Hasil Berburu Kali Ini 》*
-
- *🐂 = [ ${anti1} ]*			 *🐃 = [ ${anti7} ]*
- *🐅 = [ ${anti2} ]*			 *🐮 = [ ${anti8} ]*
- *🐘 = [ ${anti3} ]*			 *🐒 = [ ${anti9} ]*
- *🐐 = [ ${anti4} ]*			 *🐗 = [ ${anti10} ]*
- *🐼 = [ ${anti5} ]*			 *🐖 = [ ${anti11} ]*
- *🐊 = [ ${anti6} ]*		     *🐓 = [${anti12} ]*
-
- *${author}*
+		let caption = 
 `
+*《 Hasil Berburu ${conn.getName(m.sender)} 》*
+	
+- 🐂 = [ ${anti1} ]
+- 🐃 = [ ${anti7} ]
+- 🐅 = [ ${anti2} ]
+- 🐮 = [ ${anti8} ]
+- 🐘 = [ ${anti3} ]
+- 🐒 = [ ${anti9} ]
+- 🐐 = [ ${anti4} ]
+- 🐗 = [ ${anti10} ]
+- 🐼 = [ ${anti5} ]
+- 🐖 = [ ${anti11} ]
+- 🐊 = [ ${anti6} ]
+- 🐓 = [ ${anti12} ]
+
+*${author}*`
+
 		global.db.data.users[m.sender].banteng += rbrb1
 		global.db.data.users[m.sender].harimau += rbrb2
 		global.db.data.users[m.sender].gajah += rbrb3
@@ -72,44 +79,42 @@ let handler = async (m, {
 		global.db.data.users[m.sender].ayam += rbrb12
 
 		setTimeout(() => {
-			m.reply(`${hsl}`)
+			conn.reply(m.chat, caption, m)
 		}, 20000)
 
 		setTimeout(() => {
-			m.reply(`Nah ini dia`)
+			conn.reply(m.chat,  'Nah ini dia', m)
 		}, 18000)
 
 		setTimeout(() => {
-			m.reply('Dorr🔥')
+			conn.reply(m.chat,  `${conn.getName(m.sender)} ......`, m)
 		}, 15000)
 
 		setTimeout(() => {
-			m.reply('Dapat Sasaran')
+			conn.reply(m.chat,  `${conn.getName(m.sender)} Dapet nih..`, m)
 		}, 14000)
 
 		setTimeout(() => {
-			m.reply('Sedang mencari mangsa...')
+			conn.reply(m.chat,  `${conn.getName(m.sender)} Sedang berburu...`, m)
 		}, 0)
-		user.lastberburu = new Date * 1
-	} else conn.sendButton(m.chat, `\n*Sepertinya Anda Sudah Kecapekan*\n*Silahkan Istirahat dulu sekitar ${timers}*\n*Untuk bisa melanjutkan berburu*\n`, author, null, [
-		['Kandang', '.kandang']
-	], m)
+
+		user.lastberburu = new Date() * 1
+
+	} else {
+		conn.reply(m.chat, `\nSepertinya kamu sudah kecapean.\nSilahkan Istirahat dulu ~sekitar~ ${timers}\nbiar stamina kamu kembali fit dan bisa lanjut berburu kembali`, m)
+	}
+
 }
 handler.help = ['berburu']
 handler.tags = ['rpg']
 handler.command = /^(berburu)$/i
-
+handler.group = true
 export default handler
 
 function clockString(ms) {
-	let h = Math.floor(ms / 3600000)
-	let m = Math.floor(ms / 60000) % 60
-	let s = Math.floor(ms / 1000) % 60
-	console.log({
-		ms,
-		h,
-		m,
-		s
-	})
-	return [h, m, s].map(v => v.toString().padStart(2, 0)).join(':')
-}
+    let d = isNaN(ms) ? '--' : Math.floor(ms / 86400000)
+    let h = isNaN(ms) ? '--' : Math.floor(ms / 3600000) % 24
+    let m = isNaN(ms) ? '--' : Math.floor(ms / 60000) % 60
+    let s = isNaN(ms) ? '--' : Math.floor(ms / 1000) % 60
+    return `${d} Hari ${h} Jam ${m} Menit ${s} Detik`
+} 

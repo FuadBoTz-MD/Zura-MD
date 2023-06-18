@@ -15,15 +15,17 @@ const require = createRequire(__dirname) // Bring in the ability to create the '
 const { name, author } = require(join(__dirname, './package.json')) // https://www.stefanjudis.com/snippets/how-to-import-json-files-in-es-modules-node-js/
 const { say } = cfonts
 const rl = createInterface(process.stdin, process.stdout)
-
-say('FuadBoTz-V7', {
-font: 'chrome',
-align: 'center',
-gradient: ['red', 'magenta']})
-say(`Updated FuadXy`, {
-font: 'console',
-align: 'center',
-gradient: ['red', 'magenta']})
+//BAGIAN INI BEBAS
+say('Zura-MD', {
+  font: 'block',
+  align: 'center',
+  colors: ['red']
+})
+say(`BOT Whatsapp Pribadi By FuadXy~`, { 
+  font: 'console',
+  align: 'center',
+  colors: ['green']
+})
 
 var isRunning = false
 /**
@@ -37,19 +39,20 @@ function start(file) {
   say([process.argv[0], ...args].join(' '), {
     font: 'console',
     align: 'center',
-    gradient: ['red', 'magenta']})
-  say('Sabar Ya Kak Hihihi...', {
+    colors: ['magenta']
+  })
+  say('MOHON TUNGGU!!', {
     font: 'console',
-    align: 'center',
-    gradient: ['red', 'magenta']})
-  say('Lagi Memuat Plugins Kak...', {
+    colors: ['red']
+  })
+  say('SEDANG MEMUAT DATA!!', {
     font: 'console',
-    align: 'center',
-    gradient: ['red', 'magenta']})
-  say('Dah Tinggal Tunggu Kak Mwehehe', {
+    colors: ['yellow']
+  })
+  say('WAITING.....', {
     font: 'console',
-    align: 'center',
-    gradient: ['blue', 'magenta']})
+    colors: ['green']
+  })
   setupMaster({
     exec: args[0],
     args: args.slice(1),
@@ -70,7 +73,7 @@ function start(file) {
   })
   p.on('exit', (_, code) => {
     isRunning = false
-    console.error('Error Cuy:', code)
+    console.error('[!] Exited with code:', code)
     if (code === 0) return
     watchFile(args[0], () => {
       unwatchFile(args[0])
@@ -86,4 +89,3 @@ function start(file) {
 }
 
 start('main.js')
-require("http").createServer((_, res) => res.end("uptime!")).listen(8080) // Agar Supp Run Di Replit 24 Jam! Jika Error Kasih Tanda // Sebelum Require

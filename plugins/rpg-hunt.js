@@ -1,4 +1,4 @@
-let handler = async (m, { conn, text }) => {
+let handler = async (m, { conn, usedPrefix, text, args, command }) => {
   let monsters = [
     { area: 1, name: "Goblin" },
     { area: 1, name: "Slime" },
@@ -41,56 +41,67 @@ let handler = async (m, { conn, text }) => {
     { area: 13, name: "Scaled Teen Dragon" },
   ]
   let player = global.db.data.users[m.sender]
-  //let pengirim = m.sender.split("@")[0]
-  let cdm = `${MeNit(new Date - player.lasthunt)}`
-  let cds = `${DeTik(new Date - player.lasthunt)}`
-  let cd1 = Math.ceil(6 - cdm)
-  let cd2 = Math.ceil(60 - cds)
+  let pengirim = m.sender.split("@")[0]
+ let __timers = (new Date - global.db.data.users[m.sender].lasthunt)
+ let _timers = (1200000 - __timers) 
+ let timers = clockString(_timers)
 
   let area_monsters = monsters[Math.floor(Math.random() * monsters.length)]
   let monster = area_monsters.name
   area_monsters = area_monsters.area
   let monsterName = monster.toUpperCase()
 
-  if (new Date - global.db.data.users[m.sender].lasthunt > 120000) {
-    let coins = parseInt(Math.floor(Math.random() * 401))
-    let exp = parseInt(Math.floor(Math.random() * 601))
-    let sum = 82 * player.area - 59
-    let dmg = (player.sword  * 5 + player.armor * 5 - sum)
-    dmg = dmg < 0 ? Math.abs(dmg) : 0
-
-    player.healt -= dmg
+  if (new Date - global.db.data.users[m.sender].lasthunt > 1200000) {
+    let coins = parseInt(Math.floor(Math.random() * 100000))
+    let exp = parseInt(Math.floor(Math.random() * 10000))
+    let _healing = `${Math.floor(Math.random() * 100)}`.trim()
+    let healing = (_healing * 1)
+    player.health -= healing
     player.lasthunt = new Date * 1 // waktu hunt 2menit
 
-    if (player.healt < 0) {
-      let msg = `*@${m.sender.split("@")[0]}* Anda Mati Di Bunuh Oleh ${monsterName}`
+    if (player.health < 0) {
+      let msg = `*@${pengirim}* Anda Mati Di Bunuh Oleh ${monsterName}`
       if (player.level > 0) {
+      if (player.sword > 0) {
         player.level -= 1
-        msg += `\nLevel Anda Turun 1 Karena Mati Saat Berburu!`
+        player.sword -= 5
+        player.exp -= exp * 1
+        msg += `\nLevel Anda Turun 1 Karena Mati Saat Berburu!\nSword Anda Berkurang 5 Karena Mati Saat Berburu!`
       }
-      player.healt = 100
-      m.reply(msg)
-      return
+      }
+      player.health = 100
+      return conn.reply(m.chat, msg, m)
     }
 
     player.money += coins * 1
     player.exp += exp * 1
+    global.db.data.users[m.sender].tiketcoin += 1
+    
+    let pesan = `Berhasil menemukan *${monsterName}*
+*@${pengirim}* Kamu sudah membunuhnya
+Mendapatkan:
+${new Intl.NumberFormat('en-US').format(coins)} Money
+${new Intl.NumberFormat('en-US').format(exp)} XP
+Berkurang -${healing} Health, Tersisa ${player.health} Health
 
-    let pesan = `*@${m.sender.split("@")[0]}* Menemukan Dan Membunuh *${monsterName}*\nMendapatkan ${new Intl.NumberFormat('en-US').format(coins)} coins & ${new Intl.NumberFormat('en-US').format(exp)} XP\nBerkurang -${dmg}Hp, Tersisa ${player.healt}/${100}`
-    m.reply(pesan)
-  } else throw `Tunggu *00:0${cd1}:${cd2}* Untuk Berburu Lagi`
++1 Tiketcoin`
+    await conn.reply(m.chat, pesan, m)
+  } else throw `Tunggu ${timers} Untuk Berburu Lagi`
 }
+
 handler.help = ['hunt']
-handler.tags = ['rpg']
-handler.command = /^hunt/i
+handler.tags = ['game']
+handler.command = /^hunter|hunt/i
+handler.limit = true
+handler.group = true
+handler.fail = null
 
 export default handler
 
-function MeNit(ms) {
-  let m = isNaN(ms) ? '02' : Math.floor(ms / 60000) % 60
-  return [m].map(v => v.toString().padStart(2, 0)).join(':')
-}
-function DeTik(ms) {
-  let s = isNaN(ms) ? '60' : Math.floor(ms / 1000) % 60
-  return [s].map(v => v.toString().padStart(2, 0)).join(':')
+function clockString(ms) {
+  let d = isNaN(ms) ? '--' : Math.floor(ms / 86400000)
+  let h = isNaN(ms) ? '--' : Math.floor(ms / 3600000) % 24
+  let m = isNaN(ms) ? '--' : Math.floor(ms / 60000) % 60
+  let s = isNaN(ms) ? '--' : Math.floor(ms / 1000) % 60
+  return ['\n' + d, ' *Days ☀️*\n ', h, ' *Hours 🕐*\n ', m, ' *Minute ⏰*\n ', s, ' *Second ⏱️* '].map(v => v.toString().padStart(2, 0)).join('')
 }

@@ -1,32 +1,3 @@
-const tfinventory = {
-  others: {
-    money: true,
-  },
-  tfitems: {
-    potion: true,
-    trash: true,
-    wood: true,
-    rock: true,
-    string: true,
-    emerald: true,
-    diamond: true,
-    gold: true,
-    iron: true,
-  },
-  tfcrates: {
-    common: true,
-    uncommon: true,
-    mythic: true,
-    legendary: true,
-    pet: true,
-  },
-  tfpets: {
-    horse: 10,
-    cat: 10,
-    fox: 10,
-    dog: 10,
-  }
-}
 const rewards = {
     common: {
         money: 101,
@@ -92,25 +63,19 @@ const rewards = {
 }
 let handler = async (m, { command, args, usedPrefix }) => {
     let user = global.db.data.users[m.sender]
-    const tfcrates = Object.keys(tfinventory.tfcrates).map(v => user[v] && `⮕ ${global.rpg.emoticon(v)} ${v}: ${user[v]}`).filter(v => v).join('\n').trim()
     let listCrate = Object.fromEntries(Object.entries(rewards).filter(([v]) => v && v in user))
-    let info = `🧑🏻‍🏫 ᴜsᴇʀ: *${conn.getName(m.sender)}*
+    let info = `
+Use Format *${usedPrefix}${command} [crate] [count]*
+Usage example: *${usedPrefix}${command} common 10*
 
-🔖 ᴄʀᴀᴛᴇ ʟɪsᴛ :
-${Object.keys(tfinventory.tfcrates).map(v => user[v] && `⮕ ${global.rpg.emoticon(v)} ${v}: ${user[v]}`).filter(v => v).join('\n')}
-–––––––––––––––––––––––––
-💁🏻‍♂ ᴛɪᴩ :
-⮕ ᴏᴩᴇɴ ᴄʀᴀᴛᴇ:
-${usedPrefix}open [crate] [quantity]
-★ ᴇxᴀᴍᴩʟᴇ:
-${usedPrefix}open mythic 3
+📍Crate list: 
+${Object.keys(listCrate).map((v) => `
+${rpg.emoticon(v)}${v}
+`.trim()).join('\n')}
 `.trim()
     let type = (args[0] || '').toLowerCase()
     let count = Math.floor(isNumber(args[1]) ? Math.min(Math.max(parseInt(args[1]), 1), Number.MAX_SAFE_INTEGER) : 1) * 1
-    if (!(type in listCrate)) return conn.sendButton(m.chat, `*––––『 OPEN CRATES 』––––*`, info, './media/opcrates.jpg', [
-[`ᴄᴏᴍᴍᴏɴ`, `${usedPrefix}open common`],
-[`ᴜɴᴄᴏᴍᴍᴏɴ`, `${usedPrefix}open uncommon`]
-], m, {asLocation: true})
+    if (!(type in listCrate)) return m.reply(info)
     if (user[type] < count) return m.reply(`
 Your *${rpg.emoticon(type)}${type} crate* is not enough!, you only have ${user[type]} *${rpg.emoticon(type)}${type} crate*
 type *${usedPrefix}buy ${type} ${count - user[type]}* to buy
@@ -142,7 +107,7 @@ Congrats you got a rare item, which is ${diamond ? `*${diamond}* ${rpg.emoticon(
 Congrats you got a epic item, which is ${pet ? `*${pet}* ${rpg.emoticon('pet')}pet` : ''}${pet && legendary && emerald ? ', ' : (pet && legendary || legendary && emerald || emerald && pet) ? 'and ' : ''}${legendary ? `*${legendary}* ${rpg.emoticon('legendary')}legendary` : ''}${pet && legendary && emerald ? 'and ' : ''}${emerald ? `*${emerald}* ${rpg.emoticon('emerald')}emerald` : ''}
 `.trim())
 }
-handler.help = ['open'].map(v => v + ' [crate] [count]')
+handler.help = ['open', 'gacha'].map(v => v + ' [crate] [count]')
 handler.tags = ['rpg']
 handler.command = /^(open|buka|gacha)$/i
 

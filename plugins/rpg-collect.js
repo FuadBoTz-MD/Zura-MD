@@ -8,7 +8,7 @@ let handler = async (m, { conn }) => {
         user.money += 1000
         user.potion += 1
         user.lastclaim = new Date * 1
-    } else conn.reply(m.chat, `silahkan tunggu *${timers}* lagi untuk bisa mengclaim lagi`, m)
+    } else conn.reply(m.chat, `silahkan tunggu ${timers} lagi untuk bisa mengclaim lagi`, m)
 }
 handler.help = ['collect']
 handler.tags = ['rpg']
@@ -16,12 +16,12 @@ handler.command = /^(collect)$/i
 
 handler.fail = null
 
-export default handler 
+export default handler
 
 function clockString(ms) {
-  let h = Math.floor(ms / 3600000)
-  let m = Math.floor(ms / 60000) % 60
-  let s = Math.floor(ms / 1000) % 60
-  console.log({ms,h,m,s})
-  return [h, m, s].map(v => v.toString().padStart(2, 0) ).join(':')
+  let d = isNaN(ms) ? '--' : Math.floor(ms / 86400000)
+  let h = isNaN(ms) ? '--' : Math.floor(ms / 3600000) % 24
+  let m = isNaN(ms) ? '--' : Math.floor(ms / 60000) % 60
+  let s = isNaN(ms) ? '--' : Math.floor(ms / 1000) % 60
+  return ['\n' + d, ' *Days ☀️*\n ', h, ' *Hours 🕐*\n ', m, ' *Minute ⏰*\n ', s, ' *Second ⏱️* '].map(v => v.toString().padStart(2, 0)).join('')
 }

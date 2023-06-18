@@ -112,39 +112,27 @@ user.diamond += hmsil1
 		user.tiketcoin += hmsil2
 
 setTimeout(() => {
-                     conn.sendButton(m.chat, hsl, wm, null, [
-		['Inventory', '/inv']
-	], m)
+                     conn.reply(m.chat, hsl, m)
                      }, 27000) 
                
                      setTimeout(() => {
-                     conn.sendHydrated(m.chat, jln4, botdate, null, null, null, null, null, [
-      [null, null]
-    ], null)
+                     conn.reply(m.chat, jln4, m)
                       }, 25000)
                 
                      setTimeout(() => {
-                     conn.sendHydrated(m.chat, jln3, botdate, null, null, null, null, null, [
-      [null, null]
-    ], null)
+                     conn.reply(m.chat, jln3, m)
                      }, 20000) 
                         
                      setTimeout(() => {
-                     conn.sendHydrated(m.chat, jln2, botdate, null, null, null, null, null, [
-      [null, null]
-    ], null)
+                     conn.reply(m.chat, jln2, m)
                      }, 15000) 
                     
                      setTimeout(() => {
-                     conn.sendHydrated(m.chat, jln, botdate, null, null, null, null, null, [
-      [null, null]
-    ], null)
+                     conn.reply(m.chat, jln, m)
                      }, 10000) 
                      
                      setTimeout(() => {
-                     conn.sendHydrated(m.chat, `🔍 ${penambang} Mencari Area Nambang.....`, botdate, null, null, null, null, null, [
-      [null, null]
-    ], null)
+                     conn.reply(m.chat, `🔍 ${penambang} Mencari Area Nambang.....`, m)
                      }, 0) 
   user.lastnambang = new Date * 1
 }

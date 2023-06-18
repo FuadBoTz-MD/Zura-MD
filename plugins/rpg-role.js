@@ -66,8 +66,9 @@ handler.before = function (m) {
   return true
 }
 
-export default handler 
 handler.help = ['role']
 handler.tags = ['info']
 handler.command = /^(role|levelrole)$/i
 handler.register = true
+
+export default handler 

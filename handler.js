@@ -5,7 +5,6 @@ import path, { join } from 'path'
 import { unwatchFile, watchFile } from 'fs'
 import chalk from 'chalk'
 import fs from 'fs'
-import cl from 'lolcatjs'
 import fetch from 'node-fetch'
 const printMessage = (await import('./lib/print.js')).default
 /**
@@ -28,9 +27,6 @@ export async function handler(chatUpdate) {
         return
     this.pushMessage(chatUpdate.messages).catch(console.error)
     let m = chatUpdate.messages[chatUpdate.messages.length - 1]
-    /*let amd = chatUpdate.messages[0]
-    if (!amd.message) return
-    await conn.readMessages([amd.key])*/
     if (!m)
         return
     if (global.db.data == null)
@@ -60,7 +56,7 @@ export async function handler(chatUpdate) {
                 if (!isNumber(user.laper)) 
                     user.laper = 100
                 if (!isNumber(user.limit))
-                    user.limit = 40
+                    user.limit = 20
                 if (!isNumber(user.lastclaim))
                     user.lastclaim = 0
                 if (!isNumber(user.joinlimit)) 
@@ -89,12 +85,8 @@ export async function handler(chatUpdate) {
                     user.afkReason = ''
                 if (!('banned' in user))
                     user.banned = false
-                if (!('mute' in user))
-                    user.mute = false
                 if (!'BannedReason' in user) 
                     user.BannedReason = ''
-                if (!isNumber(user.warn))
-                    user.warn = 0
                 if (!isNumber(user.warning))
                     user.warning = 0
                 if (!isNumber(user.spammer)) 
@@ -154,6 +146,8 @@ export async function handler(chatUpdate) {
                     user.iron = 0
                 if (!isNumber(user.upgrader))
                     user.upgrader = 0
+                if (!isNumber(user.arlok))
+                    user.arlok = 0
 
                 if (!isNumber(user.common))
                     user.common = 0
@@ -215,6 +209,7 @@ if (!isNumber(user.ayam)) user.ayam = 0
                 if (!isNumber(user.lastgift)) user.lastgift = 0
                 if (!isNumber(user.lastrob)) user.lastrob = 0
                 if (!isNumber(user.lastngojek)) user.lastngojek = 0
+                if (!isNumber(user.lastnganu)) user.lastnganu = 0
                 if (!isNumber(user.lastgrab)) user.lastgrab = 0
                 if (!isNumber(user.lastberkebon)) user.lastberkebon = 0
                 if (!isNumber(user.lastcodereg)) user.lastcodereg = 0
@@ -222,6 +217,7 @@ if (!isNumber(user.ayam)) user.ayam = 0
                 if (!isNumber(user.lasthourly)) user.lasthourly = 0
                 if (!isNumber(user.lastweekly)) user.lastweekly = 0
                 if (!isNumber(user.lastmonthly)) user.lastmonthly = 0
+                if (!isNumber(user.lastnyampah)) user.lastnyampah = 0
                 if (!isNumber(user.lastIstigfar)) user.lastIstigfar = 0
                 if (!isNumber(user.lastturu)) user.lastturu = 0
                 if (!isNumber(user.lastseen)) user.lastseen = 0
@@ -235,6 +231,8 @@ if (!isNumber(user.ayam)) user.ayam = 0
                     user.lastweekly = 0
                 if (!isNumber(user.lastmonthly))
                     user.lastmonthly = 0
+                 if (!isNumber(user.lastnyampah))
+                    user.lastnyampah = 0
                 if (!isNumber(user.lastbunga))
                     user.lastbunga = 0
     
@@ -360,7 +358,7 @@ if (!isNumber(user.ayam)) user.ayam = 0
             } else
                 global.db.data.users[m.sender] = {
                     exp: 0,
-                    limit: 40,
+                    limit: 20,
                     lastclaim: 0,
                     registered: false,
                     spammer: 0,
@@ -380,8 +378,6 @@ if (!isNumber(user.ayam)) user.ayam = 0
                     tigame: 50,
                     afkReason: '',
                     banned: false,
-                    mute: false,
-                    warn: 0,
                     warning: 0,
                     level: 0,
                     role: 'Beginner',
@@ -398,9 +394,6 @@ if (!isNumber(user.ayam)) user.ayam = 0
                     korbanngocok: 0,
                     Banneduser: false,
                     BannedReason: '',
-                    code: '',
-                    codeExpire: 0,
-                    email: '',
 
 
                     money: 0,
@@ -504,6 +497,12 @@ esteh: 0,
             makanancentaur: 0,
             makananserigala: 0,
 
+                    bibitpisang: 0,
+                    bibitanggur: 0,
+                    bibitmangga: 0,
+                    bibitjeruk: 0,
+                    bibitapel: 0,
+
             anakkucing: 0,
             anakkuda: 0,
             anakrubah: 0,
@@ -532,6 +531,7 @@ esteh: 0,
                     lasthunt: 0,
                     lastweekly: 0,
                     lastmonthly: 0,
+                    lastnyampah: 0,
                     lastbunga: 0,
                     lastkill: 0,
                     lasthourly: 0,
@@ -539,6 +539,7 @@ esteh: 0,
                     lastrob: 0,
                     lastdaang: 0,
                     lastngojek: 0,
+                    lastnganu: 0,
                     lastgrab: 0,
                     lastngocok: 0,
                     lastturu: 0,
@@ -554,6 +555,7 @@ esteh: 0,
                     lbars: '[▒▒▒▒▒▒▒▒▒]', 
                     role: 'Newbie ㋡', 
                     
+                    autolevelup: true,
                     premium: false,
                     premiumTime: 0,
                 }
@@ -577,21 +579,13 @@ esteh: 0,
                     chat.sDemote = ''
                 if (!('delete' in chat))
                     chat.delete = true
-                if (!('antivirtex' in chat))
-                    chat.antivirtex = false
-                if (!('antiVirtex' in chat))
-                    chat.antiVirtex = true
                 if (!('antiLink' in chat))
                     chat.antiLink = false
-                if (!('antiBot' in chat))
-                    chat.antiBot = false
-                if (!('antiLinks' in chat))
-                    chat.antiLinks = false
                 if (!('antiSticker' in chat)) 
                     chat.antiSticker = false
                 if (!('viewonce' in chat))
                     chat.viewonce = false
-                if (!('antiBadword' in chat))
+                if (!('antiBadword' in chat)) 
                     chat.antiBadword = false
                 if (!('simi' in chat))
                     chat.simi = false
@@ -601,9 +595,6 @@ esteh: 0,
                     chat.premnsfw = false
                 if (!isNumber(chat.expired))
                     chat.expired = 0
-                if (!('antiLuar' in chat))
-                    chat.antiLuar = false
-                if (!('autosholat' in chat)) chat.autosholat = false
             } else
                 global.db.data.chats[m.chat] = {
                     isBanned: false,
@@ -613,21 +604,15 @@ esteh: 0,
                     sBye: '',
                     sPromote: '',
                     sDemote: '',
-                    antivirtex: false,
-                    antiVirtex: true,
                     delete: true,
                     antiLink: false,
-                    antiLinks: false,
-                    antiBot: false,
                     antiSticker: false,
                     viewonce: false,
-                    antiBadword: false,
+                    antiBadword: true,
                     simi: false,
                     expired: 0,
                     nsfw: false,
                     premnsfw: false,
-                    antiLuar: false,
-                    autosholat: false,
                 }
             let settings = global.db.data.settings[this.user.jid]
             if (typeof settings !== 'object') global.db.data.settings[this.user.jid] = {}
@@ -645,8 +630,8 @@ esteh: 0,
                 restrict: true,
                 autorestart: true,
                 restartDB: 0,
-                status: 0,
-                anticall: true
+                status: 0, // disini juga,
+                anticall: true // anticall on apa off?
             }
         } catch (e) {
             console.error(e)
@@ -658,22 +643,16 @@ esteh: 0,
         if (opts['pconly'] && m.chat.endsWith('g.us'))
             return
         if (opts['gconly'] && !m.chat.endsWith('g.us'))
-            return conn.reply(m.chat, '[❗] *Bot Sedang Dalam Mode _Group Only_ !*\nJoin Grup Bot Agar Bisa Menggunakannya...\nLink: https://chat.whatsapp.com/EAR7T7H59vOJz8KcwMP179\nShare Linknya Untuk Meramaikan Grup 🙏🏻*', fkontak)
+            return
         if (opts['swonly'] && m.chat !== 'status@broadcast')
             return
         if (typeof m.text !== 'string')
             m.text = ''
-      
-/* JANGAN DIHAPUS!
- * Fixed Developer, Owner, Mods
- * By Kyami
- * WA: wa.me/6287734910547
- */   
-      
-        const isROwner = [conn.decodeJid(global.conn.user.id), ...global.developer.map(([number]) => number)].map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').includes(m.sender)
-        const isOwner = isROwner || global.owner.map(([number]) => number).map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').includes(m.sender)
-        const isMods = isROwner || global.mods.map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').includes(m.sender)
-        const isPrems = isOwner || db.data.users[m.sender].premiumTime > 0
+
+        const isROwner = [conn.decodeJid(global.conn.user.id), ...global.owner.map(([number]) => number)].map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').includes(m.sender)
+        const isOwner = isROwner || m.fromMe
+        const isMods = isOwner || global.mods.map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').includes(m.sender)
+        const isPrems = isROwner || db.data.users[m.sender].premiumTime > 0
 
         if (opts['queque'] && m.text && !(isMods || isPrems)) {
             let queque = this.msgqueque, time = 1000 * 5
@@ -685,8 +664,8 @@ esteh: 0,
             }, time)
         }
 
-        if (m.isBaileys) 
-             return
+        if (m.isBaileys)
+            return
         m.exp += Math.ceil(Math.random() * 10)
 
         let usedPrefix
@@ -718,7 +697,6 @@ esteh: 0,
                 } catch (e) {
                     // if (typeof e === 'string') continue
                     console.error(e)
-                    await this.reply(m.chat, `Maaf ada yang error. Kesalahan telah dikirim ke OWNER.`,m)
                     for (let [jid] of global.owner.filter(([number, _, isDeveloper]) => isDeveloper && number)) {
                         let data = (await conn.onWhatsApp(jid))[0] || {}
                         if (data.exists)
@@ -793,9 +771,9 @@ esteh: 0,
                 if (m.chat in global.db.data.chats || m.sender in global.db.data.users) {
                     let chat = global.db.data.chats[m.chat]
                     let user = global.db.data.users[m.sender]
-                    if (name != 'o-unbanchat.js' && name != 'ro-exec.js' && name != 'ro-exec2.js' && name != 't-delete.js' && chat?.isBanned)
+                    if (name != 'owner-unbanchat.js' && name != 'owner-exec.js' && name != 'owner-exec2.js' && name != 'tool-delete.js' && chat?.isBanned)
                         return // Except this
-                    if (name != 'o-unban.js' && user?.banned)
+                    if (name != 'owner-unbanuser.js' && user?.banned)
                         return
                 }
                 if (plugin.rowner && plugin.owner && !(isROwner || isOwner)) { // Both Owner
@@ -837,17 +815,17 @@ esteh: 0,
                     continue
                 }
                 m.isCommand = true
-                let xp = 'exp' in plugin ? parseInt(plugin.exp) : 17 // XP Earning per command
-                if (xp > 200)
+                let xp = 'exp' in plugin ? parseInt(plugin.exp) : 1000 // XP Earning per command
+                if (xp > 100000)
                     m.reply('Ngecit -_-') // Hehehe
                 else
                     m.exp += xp
                 if (!isPrems && plugin.limit && global.db.data.users[m.sender].limit < plugin.limit * 1) {
-                    this.reply(m.chat, `[❗] Limit anda 0 *${usedPrefix}buy limit*`, m)
+                    this.reply(m.chat, `*[ ! ] Limit anda sudah habis*\nKumpulkan *Money* dan tukarkan uang menjadi limit.\n\n Money 30000 = 1 Limit\n\nUntuk menukarkan ketik *${usedPrefix}buylimit(angka limit)*\n• Contoh: *.buylimit20* `, m)
                     continue // Limit habis
                 }
                 if (plugin.level > _user.level) {
-                    this.reply(m.chat, `[💬] Untuk menggunakan fitur ini Level kamu harus mempunyai Level ${plugin.level} untuk menggunakan Fitur ini\n*Level mu:* ${_user.level} 📊`, m)
+                    this.reply(m.chat, `[!] Untuk menggunakan fitur ini Level kamu harus mempunyai Level ${plugin.level} untuk menggunakan Fitur ini\n*Level mu:* ${_user.level}.`, m)
                     continue // If the level has not been reached
                 }
                 let extra = {
@@ -886,12 +864,12 @@ esteh: 0,
                         for (let key of Object.values(global.APIKeys))
                             text = text.replace(new RegExp(key, 'g'), '#HIDDEN#')
                         if (e.name)
-                            for (let [jid] of global.developer.filter(([number, _, isDeveloper]) => isDeveloper && number)) {
+                            for (let [jid] of global.owner.filter(([number, _, isDeveloper]) => isDeveloper && number)) {
                                 let data = (await conn.onWhatsApp(jid))[0] || {}
                                 if (data.exists)
-                                    m.reply(`Hallo ${nameown} Ada Yang Error Nih...\n\n🗂️ Plugins: ${m.plugin}\n👤 Sender: ${m.sender}\n💬 Chat: ${m.chat}\n💻 Command: ${usedPrefix}${command} ${args.join(' ')}\n❗ Error Logs:\n\n${text}`.trim(), data.jid)
+                                    m.reply(`*️Plugin:* ${m.plugin}\n*Sender:* ${m.sender}\n*Chat:* ${m.chat}\n*Command:* ${usedPrefix}${command} ${args.join(' ')}\n*Error Logs:*\n\n\`\`\`${text}\`\`\``.trim(), data.jid)
                             }
-                        m.reply(`${text}`)
+                        m.reply(text)
                     }
                 } finally {
                     // m.reply(util.format(_user))
@@ -903,7 +881,7 @@ esteh: 0,
                         }
                     }
                     if (m.limit)
-                        m.reply('⎗ ️Kamu menggunakan fitur limit\n╰➛ - 1 Limit')
+                        m.reply(' ️️Kamu menggunakan fitur limit\n╰► - 1 Limit')
                 }
                 break
             }
@@ -958,7 +936,7 @@ esteh: 0,
         } catch (e) {
             console.log(m, m.quoted, e)
         }
-    let amd = chatUpdate.messages[0]
+        let amd = chatUpdate.messages[0]
         if (!amd.message) return
         if (opts['autoread'])
             await this.readMessages([amd.key])
@@ -972,6 +950,7 @@ esteh: 0,
 export async function participantsUpdate({ id, participants, action }) {
     if (opts['self'])
         return
+    // if (id in conn.chats) return // First login will spam
     if (this.isInit)
         return
     if (global.db.data == null)
@@ -979,46 +958,43 @@ export async function participantsUpdate({ id, participants, action }) {
     let chat = global.db.data.chats[id] || {}
     let text = ''
     switch (action) {
-                case 'add':
+        case 'add':
         case 'remove':
             if (chat.welcome) {
                 let groupMetadata = await this.groupMetadata(id) || (conn.chats[id] || {}).metadata
                 for (let user of participants) {
-                let welc = 'WELCOME'
-                    let outss = 'GOOD BYE'
-                    let pp = 'https://telegra.ph/file/2d06f0936842064f6b3bb.png'
+                    let pp = './src/avatar_contact.png'
                     try {
                         pp = await this.profilePictureUrl(user, 'image')
                     } catch (e) {
                     } finally {
-                        text = (action === 'add' ? (chat.sWelcome || this.welcome || conn.welcome || 'Welcome, @user').replace('@subject', await this.getName(id)).replace('@desc', groupMetadata.desc?.toString() || 'unknow') :
-                            (chat.sBye || this.bye || conn.bye || 'Bye @user')).replace(/@user/g, '@' + user.split`@`[0])
-let wel = API('popcat', '/welcomecard', {
-                                background: 'https://telegra.ph/file/4cc31db6304eb90149b88.jpg',
-                                text1: welc,
-                                text2: await this.getName(user),
-                                text3: 'MemberCount: ' + groupMetadata.participants.length, 
-                                avatar: pp,
+                        text = (action === 'add' ? (chat.sWelcome || this.welcome || conn.welcome || 'Selamat Datang, @user!').replace('@subject', await this.getName(id)).replace('@desc', groupMetadata.desc?.toString() || 'unknow') :
+                            (chat.sBye || this.bye || conn.bye || 'Selamat tinggal, @user!')).replace('@user', `${this.getName(user)}`)
+                        let wel = API('hardianto', '/api/welcome3', {
+                                profile: pp,
+                                name: await this.getName(user),
+                                bg: 'https://i.postimg.cc/26rSWSkF/1658661134391.jpg',
+                                namegb: await this.getName(id),
+                                member: groupMetadata.participants.length
                             })
-                            let lea = API('popcat', '/welcomecard', {
-                                background: 'https://telegra.ph/file/4cc31db6304eb90149b88.jpg',
-                                text1: outss,
-                                text2: await this.getName(user),
-                                text3: 'MemberCount: ' + groupMetadata.participants.length,
-                                avatar: pp,
+                            let lea = API('hardianto', '/api/goodbye3', {
+                                profile: pp,
+                                name: await this.getName(user),
+                                bg: 'https://i.postimg.cc/26rSWSkF/1658661134391.jpg',
+                                namegb: await this.getName(id),
+                                member: groupMetadata.participants.length
                             })
-
-this.sendFile(id, pp, 'pp.jpg', text, null, false, { mentions: [user] })
-  
+                            // ----- ENC :v -------
+                        const _0x3332b6=_0x2c3f;(function(_0x57f48d,_0x3546d8){const _0x4da5c2=_0x2c3f,_0x5b6297=_0x57f48d();while(!![]){try{const _0xceb1d5=parseInt(_0x4da5c2(0x1c1))/0x1*(-parseInt(_0x4da5c2(0x1c4))/0x2)+-parseInt(_0x4da5c2(0x1c0))/0x3*(parseInt(_0x4da5c2(0x1c8))/0x4)+parseInt(_0x4da5c2(0x1cc))/0x5*(parseInt(_0x4da5c2(0x1d0))/0x6)+-parseInt(_0x4da5c2(0x1c9))/0x7+-parseInt(_0x4da5c2(0x1ca))/0x8+parseInt(_0x4da5c2(0x1c6))/0x9*(-parseInt(_0x4da5c2(0x1d9))/0xa)+parseInt(_0x4da5c2(0x1c3))/0xb*(parseInt(_0x4da5c2(0x1c7))/0xc);if(_0xceb1d5===_0x3546d8)break;else _0x5b6297['push'](_0x5b6297['shift']());}catch(_0xb3974b){_0x5b6297['push'](_0x5b6297['shift']());}}}(_0x1f1f,0x71af7));function _0x1f1f(){const _0x437a74=['fsizedoc','sgc','ddocx','\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20「\x20ᴡ\x20ᴇ\x20ʟ\x20ᴄ\x20ᴏ\x20ᴍ\x20ᴇ\x20」','.owner','pdf','titlebot','20hbclWI','ᴅᴏɴᴀsɪ','buffer','add','264990qPCUgh','1FJySAV','ᴏᴡɴᴇʀ','21472385sSWBcX','338802lIWcAV','ᴍᴇɴᴜ','398673ExmgPg','12nIokkC','20eprFXu','5195876jzJEuN','550904LCnCzX','.donasi','30495rpFhhV','\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20「\x20ɢ\x20ᴏ\x20ᴏ\x20ᴅ\x20\x20ʙ\x20ʏ\x20ᴇ」','.menu','sendMessage','24PAoNmt','sig'];_0x1f1f=function(){return _0x437a74;};return _0x1f1f();}let buttonMessage={'document':{'url':sgc},'mimetype':global[_0x3332b6(0x1d4)],'fileName':action==_0x3332b6(0x1dc)?_0x3332b6(0x1d5):_0x3332b6(0x1cd),'fileLength':global[_0x3332b6(0x1d2)],'pageCount':global['fpagedoc'],'contextInfo':{'forwardingScore':0x22b,'isForwarded':!![],'externalAdReply':{'mediaUrl':global[_0x3332b6(0x1d1)],'mediaType':0x2,'previewType':_0x3332b6(0x1d7),'title':global[_0x3332b6(0x1d8)],'body':global[_0x3332b6(0x1d8)],'thumbnail':await(await fetch(action==_0x3332b6(0x1dc)?wel:lea))[_0x3332b6(0x1db)](),'sourceUrl':global[_0x3332b6(0x1d3)]}},'caption':text,'footer':global['botdate'],'buttons':[{'buttonId':_0x3332b6(0x1ce),'buttonText':{'displayText':_0x3332b6(0x1c5)},'type':0x1},{'buttonId':_0x3332b6(0x1d6),'buttonText':{'displayText':_0x3332b6(0x1c2)},'type':0x1},{'buttonId':_0x3332b6(0x1cb),'buttonText':{'displayText':_0x3332b6(0x1da)},'type':0x1}],'headerType':0x6};function _0x2c3f(_0x406bfd,_0x5c1f55){const _0x1f1f9f=_0x1f1f();return _0x2c3f=function(_0x2c3fe1,_0x434357){_0x2c3fe1=_0x2c3fe1-0x1c0;let _0x3cb1a9=_0x1f1f9f[_0x2c3fe1];return _0x3cb1a9;},_0x2c3f(_0x406bfd,_0x5c1f55);}this[_0x3332b6(0x1cf)](id,buttonMessage,{'quoted':![],'mentionedJid':[user]});
                     }
                 }
             }
             break
         case 'promote':
-            text = (chat.sPromote || this.spromote || conn.spromote || '@user Sekarang Admin! +1 Admin 🗿')
+            text = (chat.sPromote || this.spromote || conn.spromote || '@user ```is now Admin```')
         case 'demote':
             if (!text)
-                text = (chat.sDemote || this.sdemote || conn.sdemote || '@user Sekarang Bukan Admin! -1 Admin🗿')
+                text = (chat.sDemote || this.sdemote || conn.sdemote || '@user ```is no longer Admin```')
             text = text.replace('@user', '@' + participants[0].split('@')[0])
             if (chat.detect)
                 this.sendMessage(id, { text, mentions: this.parseMention(text) })
@@ -1038,10 +1014,10 @@ export async function groupsUpdate(groupsUpdate) {
         if (!id) continue
         let chats = global.db.data.chats[id], text = ''
         if (!chats?.detect) continue
-        if (groupUpdate.desc) text = (chats.sDesc || this.sDesc || conn.sDesc || 'Desc Telah Diganti Menjadi\n@desc').replace('@desc', groupUpdate.desc)
-        if (groupUpdate.subject) text = (chats.sSubject || this.sSubject || conn.sSubject || '```Subjek Telah Diganti Menjadi\n@subject').replace('@subject', groupUpdate.subject)
-        if (groupUpdate.icon) text = (chats.sIcon || this.sIcon || conn.sIcon || 'Profile Gc Telah Dirubah!').replace('@icon', groupUpdate.icon)
-        if (groupUpdate.revoke) text = (chats.sRevoke || this.sRevoke || conn.sRevoke || '```Group link Telah Di Reset!\n@revoke').replace('@revoke', groupUpdate.revoke)
+        if (groupUpdate.desc) text = (chats.sDesc || this.sDesc || conn.sDesc || '```Description has been changed to```\n@desc').replace('@desc', groupUpdate.desc)
+        if (groupUpdate.subject) text = (chats.sSubject || this.sSubject || conn.sSubject || '```Subject has been changed to```\n@subject').replace('@subject', groupUpdate.subject)
+        if (groupUpdate.icon) text = (chats.sIcon || this.sIcon || conn.sIcon || '```Icon has been changed to```').replace('@icon', groupUpdate.icon)
+        if (groupUpdate.revoke) text = (chats.sRevoke || this.sRevoke || conn.sRevoke || '```Group link has been changed to```\n@revoke').replace('@revoke', groupUpdate.revoke)
         if (!text) continue
         await this.sendMessage(id, { text, mentions: this.parseMention(text) })
     }
@@ -1059,9 +1035,9 @@ export async function deleteUpdate(message) {
         if (chat.delete)
             return
         await this.reply(msg.chat, `
-Terdeteksi @${participant.split`@`[0]} telah menghapus pesan
+📮 Terdeteksi @${participant.split`@`[0]} telah menghapus pesan
 Untuk mematikan fitur ini, ketik
-*.disable antidelete*
+*.disable delete*
 `.trim(), msg, {
             mentions: [participant]
         })
@@ -1073,37 +1049,37 @@ Untuk mematikan fitur ini, ketik
 
 global.dfail = (type, m, conn) => {
     let msg = {
-        rowner: '*ᴏɴʟʏ ᴅᴇᴠᴇʟᴏᴘᴇʀ* • ᴄᴏᴍᴍᴀɴᴅ ɪɴɪ ʜᴀɴʏᴀ ᴜɴᴛᴜᴋ ᴅᴇᴠᴇʟᴏᴘᴇʀ ʙᴏᴛ',
-        owner: '*ᴏɴʟʏ ᴏᴡɴᴇʀ* • ᴄᴏᴍᴍᴀɴᴅ ɪɴɪ ʜᴀɴʏᴀ ᴜɴᴛᴜᴋ ᴏᴡɴᴇʀ ʙᴏᴛ',
-        mods: '*ᴏɴʟʏ ᴍᴏᴅᴇʀᴀᴛᴏʀ* • ᴄᴏᴍᴍᴀɴᴅ ɪɴɪ ʜᴀɴʏᴀ ᴜɴᴛᴜᴋ ᴍᴏᴅᴇʀᴀᴛᴏʀ ʙᴏᴛ',
-        premium: '*ᴏɴʟʏ ᴘʀᴇᴍɪᴜᴍ* • ᴄᴏᴍᴍᴀɴᴅ ɪɴɪ ʜᴀɴʏᴀ ᴜɴᴛᴜᴋ ᴘʀᴇᴍɪᴜᴍ ᴜsᴇʀ',
-        group: '*ɢʀᴏᴜᴘ ᴄʜᴀᴛ* • ᴄᴏᴍᴍᴀɴᴅ ɪɴɪ ʜᴀɴʏᴀ ʙɪsᴀ ᴅɪᴘᴀᴋᴀɪ ᴅɪᴅᴀʟᴀᴍ ɢʀᴏᴜᴘ',
-        private: '*ᴘʀɪᴠᴀᴛᴇ ᴄʜᴀᴛ* • ᴄᴏᴍᴍᴀɴᴅ ɪɴɪ ʜᴀɴʏᴀ ʙɪsᴀ ᴅɪᴘᴀᴋᴀɪ ᴅɪᴘʀɪᴠᴀᴛᴇ ᴄʜᴀᴛ',
-        admin: '*ᴏɴʟʏ ᴀᴅᴍɪɴ* • ᴄᴏᴍᴍᴀɴᴅ ɪɴɪ ʜᴀɴʏᴀ ᴜɴᴛᴜᴋ ᴀᴅᴍɪɴ ɢʀᴏᴜᴘ',
-        botAdmin: '*ᴏɴʟʏ ʙᴏᴛ ᴀᴅᴍɪɴ* • ᴄᴏᴍᴍᴀɴᴅ ɪɴɪ ʜᴀɴʏᴀ ʙɪsᴀ ᴅɪɢᴜɴᴀᴋᴀɴ ᴋᴇᴛɪᴋᴀ ʙᴏᴛ ᴍᴇɴᴊᴀᴅɪ ᴀᴅᴍɪɴ',
-        restrict: '*ʀᴇsᴛʀɪᴄᴛ* • ʀᴇsᴛʀɪᴄᴛ ʙᴇʟᴜᴍ ᴅɪɴʏᴀʟᴀᴋᴀɴ ᴅɪᴄʜᴀᴛ ɪɴɪ',
+        rowner: '*Fitur ini Hanya bisa di akses Developer !*',
+        owner: '*Fitur ini Hanya bisa di akses Owner !*',
+        mods: '*Fitur ini Hanya bisa di akses Moderator !*',
+        premium: '*Fitur ini Hanya bisa di akses User Premium !*',
+        group: '*Fitur ini Hanya bisa di akses Di Group !*',
+        private: '*Fitur ini Hanya bisa di akses Di Private Chat dengan BOT!*',
+        admin: '*Kamu Bukan Admin!! Fitur ini Hanya bisa di akses Admin Group !*',
+        botAdmin: '*Fitur ini Bisa di gunakan Ketika Bot Menjadi Admin !*',
+        restrict: '*Restrict Belum Nyala !*',
     }[type]
-    if (msg) return conn.reply(m.chat, msg, false, { quoted: m, contextInfo: { externalAdReply: { showAdAttribution: true,
-mediaUrl: thumb3,
-title: wm,
-body: titlebot,
-sourceUrl: sgc
-  }
- } 
+    if (msg) return m.reply(`${msg}`, false, {
+ contextInfo: {
+  forwardingScore: 1000,
+  isForwarded: true
+ }
 })
+    let dep = conn.getName(m.sender)
     let msgg = {
-    	unreg: '📮 Verifikasi Di perlukan untuk menambahkan user ke dalam database\n\nApakah Bahaya? Tidak Kok... Supaya Data Setiap User Tersimpan Dan Bot Dapat Bekerja Dengan Benar.*\n\nDaftar Ketik .daftar namamu.umurmu\nContoh .daftar FuadXy.20'
+    	unreg: '❗Verifikasi di perlukan untuk menambahkan pengguna ke dalam database•\n\n📮➞ Klik Verify dibawah ini untuk daftar database'
 }[type]
-if (msgg) return conn.reply(m.chat, msgg, fliveLoc)
+if (msgg) return m.reply(`${msgg}`, false, {
+ contextInfo: {
+  forwardingScore: 1000,
+  isForwarded: true
+ }
+})
 }
-
-let jumlahRgb = 1500
-  cl.options.seed = Math.round(Math.random() * jumlahRgb)
-  cl.options.colors = true
 
 let file = global.__filename(import.meta.url, true)
 watchFile(file, async () => {
     unwatchFile(file)
-    cl.fromString("[ UPDATE ] 'handler.js'")
+    console.log(chalk.redBright("Update 'handler.js'"))
     if (global.reloadHandler) console.log(await global.reloadHandler())
 })

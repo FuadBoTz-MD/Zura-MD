@@ -108,7 +108,7 @@ let handler = async (m, { conn, usedPrefix }) => {
 ⚠️ *Warn:* ${warn}
 ⛔ *Banned:* No
 `.trim()
-    await conn.sendButton(m.chat, str, wm2, null, [[`Inventory`, `.inv`, `Profile`, `.profile`]], m)
+    await conn.sendFile(m.chat, pp, null, str, m)
 }
 handler.help = ['cd','cooldown']
 handler.tags = ['rpg']
@@ -118,3 +118,4 @@ export default handler
 
 const more = String.fromCharCode(8206)
 const readMore = more.repeat(4201)
+

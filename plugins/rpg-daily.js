@@ -3,29 +3,17 @@ const rewards = {
   money: 4999,
   potion: 5,
 }
-const cooldown = 79200000
-let handler = async (m, {usedPrefix}) => {
+const cooldown = 86400000
+let handler = async (m,{ conn} ) => {
   let user = global.db.data.users[m.sender]
-  if (new Date - user.lastclaim < cooldown) return conn.sendButton(m.chat, 
-'*–––––『 COOLDOWN 』–––––*',
-`ʏᴏᴜ'ᴠᴇ ᴀʟʀᴇᴀᴅʏ ᴄʟᴀɪᴍᴇᴅ *ᴛᴏᴅᴀʏ ʀᴇᴡᴀʀᴅs*, ᴩʟᴇᴀsᴇ ᴡᴀɪᴛ ᴛɪʟʟ ᴄᴏᴏʟᴅᴏᴡɴ ғɪɴɪsʜ.
-
-⏱️ ${((user.lastclaim + cooldown) - new Date()).toTimeString()}`.trim(), './media/cooldown.jpg', [
-[`ɪɴᴠᴇɴᴛᴏʀʏ`, `${usedPrefix}inventory`]
-], m, {asLocation: true})
+  if (new Date - user.lastclaim < cooldown) throw `You have already claimed this daily claim!, wait for *${((user.lastclaim + cooldown) - new Date()).toTimeString()}*`
   let text = ''
   for (let reward of Object.keys(rewards)) {
     if (!(reward in user)) continue
     user[reward] += rewards[reward]
-    text += `⮕ ${global.rpg.emoticon(reward)} ${reward}: ${rewards[reward]}\n`
+    text += `*+${rewards[reward]}* ${global.rpg.emoticon(reward)}${reward}\n`
   }
-  conn.sendButton(m.chat,
-`*––––『 DAILY REWARD 』––––*`,
-`🔖 ᴅᴀɪʟʏ ʀᴇᴡᴀʀᴅ ʀᴇᴄᴇɪᴠᴇᴅ :
-${text}`.trim(), './media/daily.jpg', [
-[`ɪɴᴠᴇɴᴛᴏʀʏ`, `${usedPrefix}inventory`],
-[`ᴍᴏɴᴛʜʟʏ`, `${usedPrefix}monthly`]
-], m, {asLocation: true})
+    conn.reply(m.chat, '*––––––『 DAILY 』––––––*', text.trim(), m)
   user.lastclaim = new Date * 1
 }
 handler.help = ['daily', 'claim']

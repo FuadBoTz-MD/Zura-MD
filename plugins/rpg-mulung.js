@@ -13,7 +13,7 @@ let handler = async (m, { conn, usedPrefix, text }) => {
 	global.db.data.users[m.sender].lastmulung = new Date * 1
   m.reply(`Selamat kamu mendapatkan : \n+${botolnye} Botol\n+${kardusnye} Kardus\n+${kalengnye} Kaleng`)
   setTimeout(() => {
-					conn.reply(m.chat, `Yuk waktunya mulung lagi ðŸ˜…`, m)
+					conn.reply(m.chat, `Yuk waktunya mulung lagi 😅`, m)
 					}, timeout)
 }
 handler.help = ['mulung']
@@ -33,7 +33,7 @@ handler.limit = true
 handler.exp = 0
 handler.money = 0
 
-export default handler 
+export default handler
 
 function msToTime(duration) {
   var milliseconds = parseInt((duration % 1000) / 100),

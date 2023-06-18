@@ -49,14 +49,14 @@ ${rpg.emoticon('exp')} *exp:* ${exp}
 ${rpg.emoticon('money')} *uang:* ${uang}
 ${rpg.emoticon('sampah')} *sampah:* ${sampah}${potion == 0 ? '' : `\n*${rpg.emoticon('potion')}Potion:* ` + potion + ''}${iron == 0 ? '' : `\n*${rpg.emoticon('iron')}Iron:* ` + iron + ''}${kayu == 0 ? '' : `\n*${rpg.emoticon('kayu')}Kayu:* ` + kayu + ''}${batu == 0 ? '' : `\n*${rpg.emoticon('batu')}Batu:* ` + batu + ''}${string == 0 ? '' : `\n*${rpg.emoticon('string')}String:* ` + string + ''}${diamond == 0 ? '' : `\n*${rpg.emoticon('diamond')}diamond:* ` + diamond + ''}${common == 0 ? '' : `\n*${rpg.emoticon('common')}common crate:* ` + common + ''}${uncommon == 0 ? '' : `\n*${rpg.emoticon('uncommon')}uncommon crate:* ` + uncommon + ''}
 `.trim()
-            conn.sendButton(m.chat, str, wm, null, [['menu', usedPrefix + 'menu', 'inventory', usedPrefix + 'inv']], m)
+            conn.reply(m.chat, str, m)
             if (mythic > 0) {
                    global.db.data.users[m.sender].mythic += mythic * 1
-                   conn.sendButton(m.chat, '*Selamat anda mendapatkan item Rare yaitu*\n' + mythic + `${rpg.emoticon('mythic')}Mythic Crate`, wm, null, [['menu', usedPrefix + 'menu', 'inventory', usedPrefix + 'inv']], m)
+                   conn.reply(m.chat, '*Selamat anda mendapatkan item Rare yaitu*\n' + mythic + `${rpg.emoticon('mythic')}Mythic Crate`, m)
             }
             if (legendary > 0) {
                 global.db.data.users[m.sender].legendary += legendary * 1
-                conn.sendButton(m.chat, '*Selamat anda mendapatkan item Epic yaitu*\n' + legendary + `${rpg.emoticon('legendary')}Legendary Crate`, wm, null, [['menu', usedPrefix + 'menu', 'inventory', usedPrefix + 'inv']], m)
+                conn.reply(m.chat, '*Selamat anda mendapatkan item Epic yaitu*\n' + legendary + `${rpg.emoticon('legendary')}Legendary Crate`, m)
             }
             global.db.data.users[m.sender].healt -= healt * 1
             global.db.data.users[m.sender].exp += exp * 1
@@ -71,8 +71,8 @@ ${rpg.emoticon('sampah')} *sampah:* ${sampah}${potion == 0 ? '' : `\n*${rpg.emot
             global.db.data.users[m.sender].kayu += kayu * 1
             global.db.data.users[m.sender].string += string * 1
             global.db.data.users[m.sender].lastadventure = new Date * 1
-            } else conn.sendButton(m.chat, `Anda sudah bekerja keras hari ini, silahkan menunggu sampai ${timers}`, wm, null, [['menu', usedPrefix + 'menu']], m)
-        } else conn.sendButton(m.chat, 'Minimal 80 health untuk bisa bercocok tanam, beli obat dulu biar kuat dengan ketik *' + usedPrefix + 'shop buy potion <jumlah>*\ndan ketik *' + usedPrefix + 'use potion <jumlah>*\n\n_Untuk mendapat money dan potion gratis ketik_ *' + usedPrefix + 'claim*', wm, null, [['Healing', usedPrefix + `heal`, 'Beli Potion', usedPrefix + `shop buy potion`]], m)
+            } else conn.reply(m.chat, `Anda sudah bekerja keras hari ini, silahkan menunggu sampai ${timers}`, m)
+        } else conn.reply(m.chat, `Minimal 80 health untuk bisa bercocok tanam, beli obat dulu biar kuat dengan ketik *${usedPrefix}shop buy potion <jumlah>*\ndan ketik *${usedPrefix}use potion <jumlah>*\n\n_Untuk mendapat money dan potion gratis ketik_ *${usedPrefix}claim*\nHealing ${usedPrefix}heal\nBeli Potion ${usedPrefix}shop buy potion`, m)
     } catch (e) {
         console.log(e)
         throw eror

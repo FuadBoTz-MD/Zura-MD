@@ -4,8 +4,11 @@ let handler = async (m, { conn }) => {
     let _timers = (300000 - __timers)
     let order = global.db.data.users[m.sender].ojekk
     let timers = clockString(_timers) 
-let name = conn.getName(m.sender)
+    let name = await conn.getName(m.sender)
     let user = global.db.data.users[m.sender]
+    
+    if (user.stamina < 20) return m.reply(`Stamina anda tidak cukup\nharap isi stamina anda dengan *${usedPrefix}eat8`)
+    if (user.lastngojek > 10800000) throw m.reply(`Kamu masih kelelahan\nHarap tunggu ${timers} lagi`)
     
      if (new Date - global.db.data.users[m.sender].lastngojek > 300000) {
 let randomaku1 = `${Math.floor(Math.random() * 10)}`
@@ -65,10 +68,8 @@ var hsl = `
  ➕ 💹 Uang = [ ${zero4} ]
  ➕ ✨ Exp = [ ${zero5} ] 		 
  ➕ 😍 Order Selesai = +1
-➕  📥Total Order Sebelumnya : ${order}
-${wm}
+ ➕  📥Total Order Sebelumnya : ${order}
 `
-var dimas5 = `*👋HALLO, Waktunya kamu ngojek lagi hari ini*`
 
 
 global.db.data.users[m.sender].money += rbrb4
@@ -77,46 +78,43 @@ global.db.data.users[m.sender].ojekk += 1
 
 
 setTimeout(() => {
-                     setTimeout(() => {
-                     m.reply(`${dimas5}`)
-                      }, 79200000)
-
-                     m.reply(`${hsl}`)
+                     conn.reply(m.chat, hsl, m)
                      }, 27000) 
                
                      setTimeout(() => {
-                     m.reply(`${dimas4}`)
+                     conn.reply(m.chat, dimas4, m)
                       }, 25000)
                 
                      setTimeout(() => {
-                     m.reply(`${dimas3}`)
+                     conn.reply(m.chat, dimas3, m)
                      }, 20000) 
                         
                      setTimeout(() => {
-                     m.reply(`${dimas2}`)
+                     conn.reply(m.chat, dimas2, m)
                      }, 15000) 
                     
                      setTimeout(() => {
-                     m.reply(`${dimas}`)
+                     conn.reply(m.chat, dimas, m)
                      }, 10000) 
                      
                      setTimeout(() => {
-                     m.reply('🔍Mencari pelanggan.....')
+                     conn.reply(m.chat, `🔍 ${name} Mencari pelanggan.....`, m)
                      }, 0) 
   user.lastngojek = new Date * 1
-    } else conn.sendButton(m.chat, `Sepertinya Anda Sudah Kecapekan Silahkan Istirahat Dulu sekitar\n🕔 *${timers}*`, wm, [['🧺inventory', '.inv']], m )
+    } else conn.reply(m.chat, `Sepertinya Anda Sudah Kecapekan Silahkan Istirahat Dulu sekitar\n🕔 *${timers}*`, m)
 }
+handler.help = ['ojek']
 handler.tags = ['rpg']
-handler.command = /^(ojek)$/i
+handler.command = /^(ojek|ngojek|gojek|jadiojek)$/i
 handler.register = true
-
+handler.group = true
 export default handler
 
 
 function clockString(ms) {
-  let h = Math.floor(ms / 3600000)
-  let m = Math.floor(ms / 60000) % 60
-  let s = Math.floor(ms / 1000) % 60
-  console.log({ms,h,m,s})
-  return [h, m, s].map(v => v.toString().padStart(2, 0) ).join(':')
+  let d = isNaN(ms) ? '--' : Math.floor(ms / 86400000)
+  let h = isNaN(ms) ? '--' : Math.floor(ms / 3600000) % 24
+  let m = isNaN(ms) ? '--' : Math.floor(ms / 60000) % 60
+  let s = isNaN(ms) ? '--' : Math.floor(ms / 1000) % 60
+  return ['\n' + d, ' *Days ☀️*\n ', h, ' *Hours 🕐*\n ', m, ' *Minute ⏰*\n ', s, ' *Second ⏱️* '].map(v => v.toString().padStart(2, 0)).join('')
 }

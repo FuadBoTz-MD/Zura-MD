@@ -1,12 +1,9 @@
+
 import fetch from 'node-fetch'
 import fs from "fs"
 
 let handler = async (m, { conn, args, text, usedPrefix, command }) => {
 let frep = { contextInfo: { externalAdReply: {title: global.wm, body: global.author, sourceUrl: snh, thumbnail: fs.readFileSync('./thumbnail.jpg')}}}
-
-let named = conn.getName(m.sender)
-let fkon = { key: { fromMe: false, participant: `${m.sender.split`@`[0]}@s.whatsapp.net`, ...(m.chat ? { remoteJid: '0@s.whatsapp.net' } : {}) }, message: { contactMessage: { displayName: `${named}`, vcard: `BEGIN:VCARD\nVERSION:3.0\nN:;a,;;;\nFN:${named}\nitem1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD`}}}
-let kled = 'https://telegra.ph/file/b5ee9cb98b54153d13be5.jpg'
   
     conn.slots = conn.slots ? conn.slots : {}
     if (m.chat in conn.slots) return m.reply('Masih ada Yang Melakukan Slots Disini, Tunggu Sampai selesai!!')
@@ -70,15 +67,15 @@ ${pickRandom(['🍊', '🍇', '🍉', '🍌', '🍍'])}|${pickRandom(['🍊', '�
              Hadiah = `-${Math.ceil(count * 1)}`
              WinOrLose = 'YOU LOSE'
         } 
-        let fxy = `
+        conn.reply(m.chat, `
+       *🎰VIRTUAL SLOTS🎰*
+
 ${spins1}|${spins2}|${spins3}
 ${spins4}|${spins5}|${spins6} <<==
 ${spins7}|${spins8}|${spins9}
 
 *${WinOrLose}* *${Hadiah}*
-`
-await conn.reply(m.chat, fxy, m, { contextInfo: { isForwarded: false, forwardingScore: 9999, externalAdReply :{ mediaType: 1, mediaUrl: kled, title: `🎰VIRTUAL SLOTS🎰`, thumbnail: { url: kled }, thumbnailUrl: kled, renderLargerThumbnail: true }}})
-
+`, m)
     } catch (e) {
         console.log(e)
         conn.reply(m.chat, 'Error', m)

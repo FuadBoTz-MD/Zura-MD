@@ -1,3 +1,4 @@
+
 //Harga Build
 let rumahsakit = 500
 let benteng = 700
@@ -12,26 +13,18 @@ let upgrade = (args[0] || '').toLowerCase()
 
 let user = global.db.data.users[m.sender]
 
-const sections = [
-    {
-	title: '🚜 List Contruction For kingdoms facility',
-	rows: [
-{title: "🏯 Benteng", rowId: usedPrefix + command + ' benteng'},
-{title: "🌾 Pertanian", rowId: usedPrefix + command + ' pertanian'},
-{title: "🏕 ️camptroop", rowId: usedPrefix + command + ' camptroop'},
-{title: "⚒️ Pertambangan", rowId: usedPrefix + command + ' pertambangan'},
-{title: "🏥 Rumah Sakit", rowId: usedPrefix + command + ' hospital'}
-	]
-    }
-]
+let cap = `⚡ Silakan pilih build di bawah...
+🚜 List Contruction For kingdoms facility
 
-const listMessage = {
-  text: `⚡ Silakan pilih build di bawah...`,
-  footer: global.wm,
-  title: `⎔───「 ${command} 」───⎔`,
-  buttonText: `☂️ Klik Disini ☂️`,
-  sections
-}
+
+🏯 Benteng 
+🌾 Pertanian  
+🏕 ️camptroop 
+⚒️ Pertambangan p
+🏥 Rumah Sakit hospital
+
+example ${usedPrefix+command} Benteng
+gunakan spasi`
 //
         try {
                if (/build|bangun/i.test(command)) {
@@ -84,7 +77,7 @@ const listMessage = {
                        break
 
                        default:
-                        return conn.sendMessage(m.chat, listMessage, {quoted: fakes})
+                        return conn.reply(m.chat, cap, m)
                 }
         }
     } catch (e) {

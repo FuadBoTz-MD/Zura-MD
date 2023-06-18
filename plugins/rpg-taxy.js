@@ -1,126 +1,146 @@
+let handler = async (m, { 
+conn, usedPrefix
+}) => {
 
-let handler = async (m, { conn }) => {
-    let __timers = (new Date - global.db.data.users[m.sender].lastngojek)
-    let _timers = (300000 - __timers)
-    let order = global.db.data.users[m.sender].ojekk
-    let timers = clockString(_timers) 
-let name = conn.getName(m.sender)
     let user = global.db.data.users[m.sender]
+    let __timers = (new Date - user.lastgrab)
+    let _timers = (10800000 - __timers)
+    let timers = clockString(_timers)
+    let name = await conn.getName(m.sender)
     
-     if (new Date - global.db.data.users[m.sender].lastngojek > 300000) {
-let randomaku1 = `${Math.floor(Math.random() * 10)}`
-let randomaku2 = `${Math.floor(Math.random() * 10)}`
-let randomaku4 = `${Math.floor(Math.random() * 5)}`
-let randomaku3 = `${Math.floor(Math.random() * 10)}`
-let randomaku5 = `${Math.floor(Math.random() * 10)}`
-
+    if (user.stamina < 20) return m.reply(`Stamina anda tidak cukup\nharap isi stamina anda dengan *${usedPrefix}eat8`)
+    if (user.lastgrab > 10800000) throw m.reply(`Kamu masih kelelahan\nHarap tunggu ${timers} lagi`)
+    
+    let rndm1 = `${Math.floor(Math.random() * 5)}`
+		let rndm2 = `${Math.floor(Math.random() * 10)}`
+		let rndm3 = `${Math.floor(Math.random() * 7)}`
+		let rndm4 = `${Math.floor(Math.random() * 4)}`
+		let rndm5 = `${Math.floor(Math.random() * 200)}`
+		let rndm6 = `${Math.floor(Math.random() * 200)}`
+		let rndm7 = `${Math.floor(Math.random() * 20)}`
+		let rndm8 = `${Math.floor(Math.random() * 100)}`
+		let rndm9 = `${Math.floor(Math.random() * 100)}`
 .trim()
 
-let rbrb1 = (randomaku1 * 2)
-let rbrb2 = (randomaku2 * 10) 
-let rbrb3 = (randomaku3 * 1)
-let rbrb4 = (randomaku4 * 15729)
-let rbrb5 = (randomaku5 * 120)
+let ran1 = (rndm1 * 10)
+let ran2 = (rndm2 * 10)
+let ran3 = (rndm3 * 10)
+let ran4 = (rndm4 * 10)
+let ran5 = (rndm5 * 10)
+let ran6 = (rndm6 * 10)
+let ran7 = (rndm7 * 10)
+let ran8 = (rndm8 * 10)
+let ran9 = (rndm9 * 10)
 
-var zero1 = `${rbrb1}`
-var zero2 = `${rbrb2}`
-var zero3 = `${rbrb3}`
-var zero4 = `${rbrb4}`
-var zero5 = `${rbrb5}`
+let hmsil1 = `${ran1}`
+let hmsil2 = `${ran2}`
+let hmsil3 = `${ran3}`
+let hmsil4 = `${ran4}`
+let hmsil5 = `${ran5}`
+let hmsil6 = `${ran6}`
+let hmsil7 = `${ran7}`
+let hmsil8 = `${ran8}`
+let hmsil9 = `${ran9}`
 
-var dimas = `
-🚶⬛⬛⬛⬛⬛⬛⬛⬛⬛
+let jln = `
+⬛⬛⬛⬛⬛⬛⬛⬛🚶⬛
 ⬛⬜⬜⬜⬛⬜⬜⬜⬛⬛
 ⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛
-🏘️🏘️🏘️🏘️🌳  🌳 🏘️       🚕
+🏘️🏘️🏘️🏘️🌳🌳🏘️ 🌳🌳🌳
 
-
-✔️ Mendapatkan orderan....
+✔️ ${name} Wait....
 `
 
-var dimas2 = `
-🚶⬛⬛⬛⬛⬛🚐⬛⬛⬛🚓🚚
-🚖⬜⬜⬜⬛⬜⬜⬜🚓⬛🚑
-⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛🚙
-🏘️🏘️🏢️🌳  🌳 🏘️  🏘️🏡     
+let jln2 = `
+⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛
+⬛⬜⬜⬜⬛⬜⬜⬜⬛🚶
+⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛
+🏘️🏘️🏘️🏘️🌳🌳🏘️ 🌳🌳🌳
 
-
-🚖 Mengantar Ke tujuan.....
+➕ ${name} Menemukan Area....
 `
 
-var dimas3 = `
-⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛🚓
-⬛⬜🚗⬜⬜⬛⬜🚐⬜⬜⬛🚙🚚🚑
-⬛⬛⬛⬛🚒⬛⬛⬛⬛⬛⬛🚚
-🏘️🏘️🏘️🏘️🌳  🌳 🏘️       
+let jln3 = `
+⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛
+⬛⬜⬜⬛⬛⬜⬜⬜⬛⬛
+⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛
+🏘️🏘️🏘️🏘️🌳🌳🏘️ 🌳🌳🚶
 
-
-🚖 Selesai Mengantar Pelanggan....
+➕ ${name} Mulai Megrab....
 `
 
-var dimas4 = `
-➕ 💹Menerima gaji....
+let jln4 = `
+⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛
+⬛⬜⬜⬛⬛⬜⬜⬜⬛⬛
+⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛
+🏘️🏘️🏘️🏘️🌳🌳🏘️ 🚶
+
+➕ ${name}
+💹 Menerima gaji....
 `
 
-var hsl = `
-*—[ Hasil Taxy ${name} ]—*
- ➕ 💹 Uang = [ ${zero4} ]
- ➕ ✨ Exp = [ ${zero5} ] 		 
- ➕ 😍 Order Selesai = +1
-➕  📥Total Order Sebelumnya : ${order}
-${wm}
+let hsl = `
+*《 Hasil grab ${name} 》*
+
+ *💎 = [ ${hmsil1} ] Diamond*
+ *⛓️ = [ ${hmsil2} ] Iron*
+ *🪙 = [ ${hmsil3} ] Gold*
+ *💚 = [ ${hmsil4} ] Emerald*
+ *🪨 = [ ${hmsil5} ] Rock*
+ *🌕 = [ ${hmsil6} ] Clay*
+ *🕳️ = [ ${hmsil7} ] Coal*
+ *🌑 = [ ${hmsil8} ] Sand*
+ *✉️ = [ ${hmsil9} ] Exp*
+ 
+ Stamina anda berkurang -20
 `
 
-var dimas5 = `
-*👋HALLO, Waktunya misi taxy lagi kak.....*
-`
-
-global.db.data.users[m.sender].money += rbrb4
-global.db.data.users[m.sender].exp += rbrb5
-global.db.data.users[m.sender].ojekk += 1
-
-
+user.diamond += hmsil1
+		user.iron += hmsil2
+		user.gold += hmsil3
+		user.emerald += hmsil4
+		user.rock += hmsil5
+		user.clay += hmsil6
+		user.coal += hmsil7
+		user.sand += hmsil8
+		user.exp += hmsil9
+		user.stamina -= 20
+	
 setTimeout(() => {
-                     setTimeout(() => {
-                     m.reply(`${dimas4}`)
-                     }, 79200000)
-
-                     m.reply(`${hsl}`)
+                     conn.reply(m.chat, hsl, m)
                      }, 27000) 
                
                      setTimeout(() => {
-                     m.reply(`${dimas4}`)
+                     conn.reply(m.chat, jln4, m)
                       }, 25000)
                 
                      setTimeout(() => {
-                     m.reply(`${dimas3}`)
+                     conn.reply(m.chat, jln3, m)
                      }, 20000) 
                         
                      setTimeout(() => {
-                     m.reply(`${dimas2}`)
+                     conn.reply(m.chat, jln2, m)
                      }, 15000) 
                     
                      setTimeout(() => {
-                     m.reply(`${dimas}`)
+                     conn.reply(m.chat, jln, m)
                      }, 10000) 
                      
                      setTimeout(() => {
-                     m.reply('🔍Mencari pelanggan.....')
+                     conn.reply(m.chat, `🔍 ${name} Mencari Area grab.....`, m)
                      }, 0) 
-  user.lastngojek = new Date * 1
-    } else conn.sendButton(m.chat, `Sepertinya Anda Sudah Kecapekan Silahkan Istirahat Dulu sekitar\n🕔 *${timers}*`, wm, [['🧺inventory', '.inv']], m )
+  user.lastgrab = new Date * 1
 }
+handler.help = ['grab']
 handler.tags = ['rpg']
-handler.command = /^(grab)$/i
-handler.register = true
+handler.command = /^(taksi|taxy|grab|megrab)$/i
 
 export default handler
 
-
 function clockString(ms) {
-  let h = Math.floor(ms / 3600000)
-  let m = Math.floor(ms / 60000) % 60
-  let s = Math.floor(ms / 1000) % 60
-  console.log({ms,h,m,s})
-  return [h, m, s].map(v => v.toString().padStart(2, 0) ).join(':')
+  let d = isNaN(ms) ? '--' : Math.floor(ms / 86400000)
+  let h = isNaN(ms) ? '--' : Math.floor(ms / 3600000) % 24
+  let m = isNaN(ms) ? '--' : Math.floor(ms / 60000) % 60
+  let s = isNaN(ms) ? '--' : Math.floor(ms / 1000) % 60
+  return ['\n' + d, ' *Days ☀️*\n ', h, ' *Hours 🕐*\n ', m, ' *Minute ⏰*\n ', s, ' *Second ⏱️* '].map(v => v.toString().padStart(2, 0)).join('')
 }

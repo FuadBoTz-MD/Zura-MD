@@ -22,14 +22,13 @@ You're already adventure!!, please wait *🕐${timers.toTimeString()}*
         const total = rewards.reward[rewardItem].getRandom()
         user[rewardItem] += total * 1
         if (total) text += `\n*${global.rpg.emoticon(rewardItem)}${rewardItem}:* ${total}`
-    } 
-    let pp = 'https://telegra.ph/file/aa5336e0d4f84a6e8ed18.jpg'
-    await conn.reply(m.chat, text.trim(), m, { mentions: [who], contextInfo: { forwardingScore: 9999, isForwarded: true, externalAdReply :{ mediaType: 1, mediaUrl: pp, title: ' ', thumbnail: { url: pp }, thumbnailUrl: pp, sourceUrl: 'https://call.whatsapp.com/video/rX0OHKCdyxNvvypMT7FdqZ', renderLargerThumbnail: true }}})
+    }
+    m.reply(text.trim())
     user.lastadventure = new Date * 1
 }
-handler.help = ['adventure', 'adv']
+handler.help = ['adventure', 'petualang', 'berpetualang', 'mulung']
 handler.tags = ['rpg']
-handler.command = /^(adventure|adv)$/i
+handler.command = /^(adventure|(ber)?petualang(ang)?|mulung)$/i
 
 handler.cooldown = cooldown
 handler.disabled = false

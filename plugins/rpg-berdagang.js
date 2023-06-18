@@ -1,64 +1,78 @@
 
-// let pajak = 0.02
-let handler = async (m, { conn, text }) => {
-let dapat = (Math.floor(Math.random() * 5000))
-  let who
-  if (m.isGroup) who = m.mentionedJid[0]
-  else who = m.chat
-  if (!who) throw 'Tag salah satu lah, yang kamu ingin berdagang bareng'
-  let __timers = (new Date - global.db.data.users[m.sender].lastdagang)
-  let _timers = (28800000 - __timers) 
-  let timers = clockString(_timers)
-  let users = global.db.data.users
-  let username = conn.getName(who)
-  if (new Date - global.db.data.users[m.sender].lastdagang > 28800000){
-  if (4999 > users[who].money) throw 'Target tidak memiliki modal harap masukkan modal 5000'
-  if (4999 > users[m.sender].money) throw 'kamu tidak memiliki modal harap masukkan modal 5000'
-  users[who].money -= dapat * 1
- users[m.sender].money -= dapat * 1
-  global.db.data.users[m.sender].lastdagang = new Date * 1
-  m.reply(`Mohon tunggu kak..\nKamu dan @${who.replace(/@.+/, '')} sedang berdagang.. ðŸ˜…\n\nKamu dan @${who.replace(/@.+/, '')} meletakkan modal -${dapat} ðŸ˜…`)
-  setTimeout(() => {
-					conn.reply(m.chat, `Selamat kamu dan @${who.replace(/@.+/, '')} mendapatkan money..\n\nPenghasilan dagang kamu didapatkan +5000\n${users[m.sender].money += 5000} Money kamu\n\nPenghasilan dagang @${who.replace(/@.+/, '')} didapatkan +5000\n${users[who].money += 5000} Money @${who.replace(/@.+/, '')}`, m)
-					}, 3600000)
-  setTimeout(() => {
-					conn.reply(m.chat, `Selamat kamu dan @${who.replace(/@.+/, '')} mendapatkan money..\n\nPenghasilan dagang kamu didapatkan +5000\n${users[m.sender].money += 5000} Money kamu\n\nPenghasilan dagang @${who.replace(/@.+/, '')} didapatkan +5000\n${users[who].money += 5000} Money @${who.replace(/@.+/, '')}`, m)
-					}, 7200000)
-  setTimeout(() => {
-					conn.reply(m.chat, `Selamat kamu dan @${who.replace(/@.+/, '')} mendapatkan money..\n\nPenghasilan dagang kamu didapatkan +5000\n${users[m.sender].money += 5000} Money kamu\n\nPenghasilan dagang @${who.replace(/@.+/, '')} didapatkan +5000\n${users[who].money += 5000} Money @${who.replace(/@.+/, '')}`, m)
-					}, 10800000)
-  setTimeout(() => {
-					conn.reply(m.chat, `Selamat kamu dan @${who.replace(/@.+/, '')} mendapatkan money..\n\nPenghasilan dagang kamu didapatkan +5000\n${users[m.sender].money += 5000} Money kamu\n\nPenghasilan dagang @${who.replace(/@.+/, '')} didapatkan +5000\n${users[who].money += 5000} Money @${who.replace(/@.+/, '')}`, m)
-					}, 14400000)
-  setTimeout(() => {
-					conn.reply(m.chat, `Selamat kamu dan @${who.replace(/@.+/, '')} mendapatkan money..\n\nPenghasilan dagang kamu didapatkan +5000\n${users[m.sender].money += 5000} Money kamu\n\nPenghasilan dagang @${who.replace(/@.+/, '')} didapatkan +5000\n${users[who].money += 5000} Money @${who.replace(/@.+/, '')}`, m)
-					}, 18000000)
-  setTimeout(() => {
-					conn.reply(m.chat, `Selamat kamu dan @${who.replace(/@.+/, '')} mendapatkan money..\n\nPenghasilan dagang kamu didapatkan +5000\n${users[m.sender].money += 5000} Money kamu\n\nPenghasilan dagang @${who.replace(/@.+/, '')} didapatkan +5000\n${users[who].money += 5000} Money @${who.replace(/@.+/, '')}`, m)
-					}, 21600000)
-  setTimeout(() => {
-					conn.reply(m.chat, `Selamat kamu dan @${who.replace(/@.+/, '')} mendapatkan money..\n\nPenghasilan dagang kamu didapatkan +5000\n${users[m.sender].money += 5000} Money kamu\n\nPenghasilan dagang @${who.replace(/@.+/, '')} didapatkan +5000\n${users[who].money += 5000} Money @${who.replace(/@.+/, '')}`, m)
-					}, 25200000)
-  setTimeout(() => {
-					conn.reply(m.chat, `Selamat kamu dan @${who.replace(/@.+/, '')} mendapatkan money..\n\nPenghasilan dagang kamu didapatkan +10000\n${users[m.sender].money += 10000} Money kamu\n\nPenghasilan dagang @${who.replace(/@.+/, '')} didapatkan +10000\n${users[who].money += 10000} Money @${who.replace(/@.+/, '')}`, m)
-					}, 28800000)
-}else conn.sendBut(m.chat, `Anda Sudah Berdagang , tunggu ${timers} lagi..`,wm,'Adventure','.adventure', m)
+const cooldown = 28800000
+let handler = async (m, { conn, text, usedPrefix, command }) => {
+    let who = m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.fromMe ? conn.user.jid : m.sender
+
+    if (typeof global.db.data.users[who] == "undefined") {
+        global.db.data.users[who] = {
+            exp: 0,
+            limit: 10,
+            lastclaim: 0,
+            lastdagang: 0,
+            registered: false,
+            name: conn.getName(m.sender),
+            age: -1,
+            regTime: -1,
+            afk: -1,
+            afkReason: '',
+            banned: false,
+            level: 0,
+            lastweekly: 0,
+            role: 'Warrior V',
+            autolevelup: false,
+            money: 0,
+            pasangan: "",
+        }
+    }
+
+    let user = global.db.data.users[who]
+    let dapat = (Math.floor(Math.random() * 5000))
+    if (!who) throw 'Tag salah satu lah, yang kamu ingin berdagang bareng'
+    let ctimer = (new Date - user.lastdagang)
+    let _ctimer = (cooldown - ctimer)
+    let timers = clockString(_ctimer)
+    if (user.lastdagang < cooldown) {
+        if (5000 > user.money) throw 'Target tidak memiliki modal harap masukkan modal 5000'
+        if (5000 > user.money) throw 'kamu tidak memiliki modal harap masukkan modal 5000'
+        let caption = `${htki} BERDAGANG ${htka}\nMohon tunggu kak.. @${m.sender.split("@")[0]} dan @${who.split("@")[0]} sedang berdagang.. 😅`
+        
+        let _caption = `Selamat @${m.sender.split("@")[0]} dan @${who.split("@")[0]} mendapatkan money..\n\nPenghasilan dagang @${m.sender.split("@")[0]} didapatkan +5000\n${user.money += 5000} Money @${m.sender.split("@")[0]}\n\nPenghasilan dagang @${who.split("@")[0]} didapatkan +5000\n${user.money += 5000} Money @${who.split("@")[0]}`
+      
+        if (user.money < 10000) throw `Maaf kamu tidak bisa berdagang dengan ${who.split("@")[0]} karena jumlah modal yang kamu keluarkan kurang dari 10000`
+        
+        let __caption = `${htki} SUKSES ${htka}\nSelamat @${m.sender.split("@")[0]} dan @${who.split("@")[0]} mendapatkan money..\n\nPenghasilan dagang @${m.sender.split("@")[0]} didapatkan +10000\n${user.money += 10000} Money @${m.sender.split("@")[0]}\n\nPenghasilan dagang @${who.split("@")[0]} didapatkan +10000\n${user.money += 10000} Money @${who.split("@")[0]}`
+
+        conn.reply(m.chat, caption, clockString(60000), m, { mentions: conn.parseMention(caption) })
+
+        setTimeout(() => {
+            conn.reply(m.chat, __caption, `SUKSES`, m, { mentions: conn.parseMention(__caption) })
+        }, 10800000)
+
+        setTimeout(() => {
+            conn.reply(m.chat, _caption, clockString(10800000), m, { mentions: conn.parseMention(_caption) })
+        }, 7200000)
+
+        setTimeout(() => {
+            conn.reply(m.chat, _caption, clockString(7200000), m, { mentions: conn.parseMention(_caption) })
+        }, 3600000)
+
+        setTimeout(() => {
+            conn.reply(m.chat, _caption, clockString(3600000), m, { mentions: conn.parseMention(_caption) })
+        }, 60000)
+        user.lastdagang = new Date * 1
+    } else conn.reply(m.chat, `Anda Sudah Berdagang tunggu\n${timers} lagi..`, m)
 }
-handler.help = ['berdagang *@tag*']
+handler.help = ['berdagang'].map(v => v + ' @[tag]')
 handler.tags = ['rpg']
-handler.command = /^berdagang$/
+handler.command = /^(berdagang|dagang)$/i
 handler.limit = true
-handler.group = true
+handler.cooldown = cooldown
+export default handler
 
-export default handler 
-
-function pickRandom(list) {
-    return list[Math.floor(Math.random() * list.length)]
-}
 function clockString(ms) {
-  let h = Math.floor(ms / 3600000)
-  let m = Math.floor(ms / 60000) % 60
-  let s = Math.floor(ms / 1000) % 60
-  console.log({ms,h,m,s})
-  return [h, m, s].map(v => v.toString().padStart(2, 0) ).join(':')
+    let d = isNaN(ms) ? '--' : Math.floor(ms / 86400000)
+    let h = isNaN(ms) ? '--' : Math.floor(ms / 3600000) % 24
+    let m = isNaN(ms) ? '--' : Math.floor(ms / 60000) % 60
+    let s = isNaN(ms) ? '--' : Math.floor(ms / 1000) % 60
+    return ['\n' + d, ' *Days ☀️*\n ', h, ' *Hours 🕐*\n ', m, ' *Minute ⏰*\n ', s, ' *Second ⏱️* '].map(v => v.toString().padStart(2, 0)).join('')
 }

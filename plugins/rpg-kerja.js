@@ -1,10 +1,11 @@
+
 let handler = async (m, {conn, command, args, usedPrefix}) => {
 let type = (args[0] || '').toLowerCase()
 let users = global.db.data.users[m.sender]
-let time = global.db.data.users[m.sender].lastkerja + 300000
-let __timers = (new Date - global.db.data.users[m.sender].lastkerja)
-   let _timers = (0 - __timers)
-    let timers = clockString(_timers) 
+let time = global.db.data.users[m.sender].lastjb + 300000
+//let __timers = (new Date - global.db.data.users[m.sender].lastkerja)
+   // let _timers = (0 - __timers)
+   // let timers = clockString(_timers) 
     //JANGAN DI OTAK ATIK
 //PEMBATAS
 let penumpan = ['mas mas','bapak bapak','cewe sma','bocil epep','emak emak']
@@ -39,7 +40,7 @@ let _dpecat = `${pickRandom(['1', '0', '0', '1'])}`
             let dpecat = (_dpecat * 1)
             let dppecat = `KAMU DI PECAT KARNA ${alasanpasien}`
 //GAK RAPIH G GANTENG
-const sections = [
+/*const sections = [
     {
 	title: '🌟 List Kerjaan',
 	rows: [
@@ -51,15 +52,25 @@ const sections = [
 {title: "⚒️ Kuli", rowId: usedPrefix + command + ' kuli'}
 	]
     }
-]
+]*/
 
-const listMessage = {
-  text: `⚡ Silakan pilih kerjaan di bawah...`,
+const listMessage = `
+🛵 Ojek ojek
+🥗 Pedagang 
+🏥 ️Dokter 
+🌾 Petani 
+🏯 Montir 
+⚒️ Kuli
+
+
+example .kerja kuli
+gunakan spasi`
+/*  text: `⚡ Silakan pilih kerjaan di bawah...`,
   footer: global.wm,
   title: `⎔───「 ${command} 」───⎔`,
   buttonText: `☂️ Klik Disini ☂️`,
   sections
-}
+}*/
 //PEMBATAS\\
 if (/kerjadulu|kerja|work/i.test(command)) {
 switch(type) {
@@ -110,7 +121,7 @@ global.db.data.users[m.sender].lastkerja = new Date * 1
 	m.reply(`Kamu baru saja selesai ${rumah} 🔨\nDan mendapatkan uang senilai *Rp ${duitk} 💹*`)
 break
 default:
-                        return conn.sendMessage(m.chat, listMessage, {quoted: null})
+                        return conn.reply(m.chat, listMessage, m)
                 }
                 }
                 
@@ -126,9 +137,9 @@ function pickRandom(list) {
     return list[Math.floor(Math.random() * list.length)]
 }
 function clockString(ms) {
-  let h = Math.floor(ms / 3600000)
-  let m = Math.floor(ms / 60000) % 60
-  let s = Math.floor(ms / 1000) % 60
-  console.log({ms,h,m,s})
-  return [h, m, s].map(v => v.toString().padStart(2, 0) ).join(':')
+  let d = isNaN(ms) ? '--' : Math.floor(ms / 86400000)
+  let h = isNaN(ms) ? '--' : Math.floor(ms / 3600000) % 24
+  let m = isNaN(ms) ? '--' : Math.floor(ms / 60000) % 60
+  let s = isNaN(ms) ? '--' : Math.floor(ms / 1000) % 60
+  return ['\n' + d, ' *Days ☀️*\n ', h, ' *Hours 🕐*\n ', m, ' *Minute ⏰*\n ', s, ' *Second ⏱️* '].map(v => v.toString().padStart(2, 0)).join('')
 }
